@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Комментарии</title>
+</head>
+<body>
+<form th:action="${'/blog/сomm'}" method="post">
+  <input type="text" name="header" placeholder="Заголовок">
+  <textarea name="tc" placeholder="Текст комментария"></textarea>
+  <input type="text" name="writer" placeholder="Автор">
+  <input type="datetime-local" name="dOfp" ><br>
+  <input type="radio" id="1" name="app" value="1">
+  <label for="1">1</label>
+  <input type="radio" id="2" name="app" value="2">
+  <label for="2">2</label>
+  <input type="radio" id="3" name="app" value="3">
+  <label for="3">3</label>
+  <input type="radio" id="4" name="app" value="4">
+  <label for="4">4</label>
+  <input type="radio" id="5" name="app" value="5">
+  <label for="5">5</label>
+  <br>
+  <button type="submit">Отправить</button>
+</form>
+
+</body>
+</html>

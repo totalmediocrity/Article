@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание профиля</title>
+</head>
+<body>
+<form th:action="${'/blog/profile'}" method="post">
+    <input type="text" name="nik" placeholder="Никнейм">
+    <input type="text" name="surname" placeholder="Фамилия">
+    <input type="text" name="name" placeholder="Имя">
+    <input type="patron" name="patron" placeholder="Отчество">
+    <textarea name="yourself" placeholder="О себе в краце"></textarea>
+    <input type="number" name="age" placeholder="Возраст">
+    <br>
+    <button type="submit">Создать профиль</button>
+</form>
+<p th:text="${nik}"></p>
+</body>
+</html>
