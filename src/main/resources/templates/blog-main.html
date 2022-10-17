@@ -5,14 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<div style=" flex-direction: column-reverse">
 <h1>Все статьи</h1>
 <a href="/blog/filter">Поиск статей</a>
 <a href="/blog/add">Добавить статью</a>
-<a href="/blog/profile">Персона</a>
-<div th:each="el : ${posts}">
+<a href="/blog/profile">Профиль</a>
+<div style="background-color: lightgray; width: 270px; height: 100px" th:each="el : ${posts}" >
     <h3 th:text="${el.title}"></h3>
     <p th:text="${el.anons}"></p>
-    <a th:href="${'/blog/comm'}">Комментарии</a>
+    <a th:href="${'/blog/comment'}" >Комментарии</a>
+</div>
 </div>
 </body>
 </html>

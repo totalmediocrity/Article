@@ -54,9 +54,20 @@ public class BlogController  {
     @PostMapping("/blog/filter/result")
     public String blogResult(@RequestParam String title, Model model)
     {
-       List<Post> result = postRepository.findByTitleContains(title);
-//        List<Post> result = postRepository.findLikeTitle(title);
-        model.addAttribute("result", result);
+        List<Post> results = postRepository.findByTitleContains(title);
+        model.addAttribute("results", results);
+//        List<Post> result = postRepository.findByTitleContains(title);
+//        model.addAttribute("result", result);
+        return "blog-filter";
+    }
+
+    @PostMapping("/blog/filter/results")
+    public String blogResults(@RequestParam String title, Model model)
+    {
+        List<Post> results = postRepository.findByTitle(title);
+        model.addAttribute("results", results);
+ //       List<Post> result = postRepository.findByTitle(title);
+//        model.addAttribute("result", result);
         return "blog-filter";
     }
 
@@ -78,21 +89,22 @@ public class BlogController  {
         return "blog-profile";
     }
 
-    @GetMapping("/blog/comm")
+    @GetMapping("/blog/comment")
     public String blogComm(Model model) {
-        return "blog-comm";
+        return "blog-comment";
     }
 
-    @PostMapping("/blog/comm")
+    @PostMapping("/blog/comment")
     public String blogCommProf(@RequestParam String header,
                                @RequestParam String tc,
                                @RequestParam String writer,
                                @RequestParam String dOfp,
                                @RequestParam String app,
                                   Model model) {
-        Comment comm = new Comment(header, tc, writer,dOfp,app);
-        commentRepository.save(comm);
-        return "blog-comm";
+        Comment comment = new Comment(header, tc, writer,dOfp,app);
+        commentRepository.save(comment);
+        model.addAttribute("tc", tc);
+        return "blog-comment";
     }
 
 

@@ -1,9 +1,11 @@
 package com.example.demo.models;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Comment {
        public Comment(String header, String tc, String writer, String dOfp, String app) {
         this.header = header;

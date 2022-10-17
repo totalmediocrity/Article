@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
 </head>
 <body>
 <h2>Фильтрация</h2>
-<form method="post" th:action="${'/blog/filter/result'}">
+<form >
+    <div style="display: flex; flex-direction: column; width: 200px">
     <input type="text" name="title">
-    <button type="submit">Найти</button>
-    <div th:each="el : ${result}">
+    <input type ="text" name="anons" style="border: none; pointer-events:none">
+    <button formaction="/blog/filter/result" formmethod="post" type="submit" style="margin: 0 0 5px 0">Неточный поиск</button>
+        <button formaction="/blog/filter/results" formmethod="post" type="submit">Точный поиск</button>
+    </div>
+    <div th:each="el : ${results}">
         <h3 th:text="${el.title}"></h3>
         <p th:text="${el.anons}"></p>
         <strong th:text="${el.full_text}"></strong>

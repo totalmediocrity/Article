@@ -5,12 +5,16 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<div style=" padding: 18px 0 0 20px; width: 450px">
+  <h2>Добавление статьи</h2>
 <form th:action="${'/blog/add'}" method="post">
-  <input type="text" name="title" placeholder="Введите название статьи">
-  <input type="text" name="anons" placeholder="Введите анос статьи">
-  <textarea name="full_text" placeholder="Введите текст статьи"></textarea>
-  <br>
+  <input style="height: 30px" type="text" name="title" placeholder="Введите название статьи">
+  <input style="height: 30px; width: 185px" type="text" name="anons" placeholder="Введите подзаголовок статьи">
+  <p />
+  <textarea style="width: 350px; height: 150px" name="full_text" placeholder="Введите текст статьи"></textarea>
+  <p />
   <button type="submit">Добавить статью</button>
 </form>
+</div>
 </body>
 </html>

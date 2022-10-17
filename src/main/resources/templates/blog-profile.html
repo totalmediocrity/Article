@@ -5,16 +5,27 @@
     <title>Создание профиля</title>
 </head>
 <body>
+<h2>Создание профиля</h2>
+<div style=" flex-direction: column-reverse; width: 200px">
 <form th:action="${'/blog/profile'}" method="post">
+    <p> Введите никнейм: <p/>
     <input type="text" name="nik" placeholder="Никнейм">
+    <p> Введите Фамилию: <p/>
     <input type="text" name="surname" placeholder="Фамилия">
+    <p> Введите Имя: <p/>
     <input type="text" name="name" placeholder="Имя">
+    <p> Введите Отчество: <p/>
     <input type="patron" name="patron" placeholder="Отчество">
-    <textarea name="yourself" placeholder="О себе в краце"></textarea>
+    <p> Введите информацию о себе: <p/>
+    <textarea name="yourself" placeholder="краткость - сестра таланта"></textarea>
+    <p> Введите информацию о возрасте: <p/>
     <input type="number" name="age" placeholder="Возраст">
-    <br>
-    <button type="submit">Создать профиль</button>
+    <br><br>
+    <button type="submit" style="border-radius: 12px; border: none; font-size: 19px;
+    margin:4px 2px; background-color: lightblue">Создать профиль</button>
 </form>
-<p th:text="${nik}"></p>
+</div>
+<p th:text="'Добро пожаловать, ' + ${nik}"/>
+
 </body>
 </html>
