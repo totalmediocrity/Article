@@ -7,30 +7,56 @@
 <body>
 <h2>Прокомментируйте прочитанное</h2>
 <div style=" flex-direction: column-reverse; width: 200px">
-<form th:action="${'/blog/comment'}" method="post">
-  <input style="height: 27px" type="text" name="header" placeholder="Заголовок">
-  <p />
-  <textarea style="width: 350px; height: 150px" name="tc" placeholder="Текст комментария"></textarea>
-  <p />
-  <input style="height: 27px" type="text" name="writer" placeholder="Автор">
-  <p />
-  <input style="height: 24px" type="datetime-local" name="dOfp" ><br>
-  <p> Как вы оцениваете информативность постов: <p/>
-  <input type="radio" id="1" name="app" value="1">
-  <label for="1">1</label>
-  <input type="radio" id="2" name="app" value="2">
-  <label for="2">2</label>
-  <input type="radio" id="3" name="app" value="3">
-  <label for="3">3</label>
-  <input type="radio" id="4" name="app" value="4">
-  <label for="4">4</label>
-  <input type="radio" id="5" name="app" value="5">
-  <label for="5">5</label>
-  <p />
-  <button type="submit">Отправить</button>
-</form>
-</div>
-<p th:text="${tc}"></p>
+  <form th:action="${'/blog/comment'}" method="post">
+    <input style="height: 27px" type="text" name="header" placeholder="Заголовок">
+    <p />
+    <textarea style="width: 350px; height: 150px" name="tc" placeholder="Текст комментария"></textarea>
+    <p />
+    <input style="height: 27px" type="text" name="writer" placeholder="Автор">
+    <p />
+    <input style="height: 24px" type="datetime-local" name="dOfp" ><br>
+    <p> Как вы оцениваете информативность постов: <p/>
+    <input type="radio" id="1" name="app" value="1">
+    <label for="1">1</label>
+    <input type="radio" id="2" name="app" value="2">
+    <label for="2">2</label>
+    <input type="radio" id="3" name="app" value="3">
+    <label for="3">3</label>
+    <input type="radio" id="4" name="app" value="4">
+    <label for="4">4</label>
+    <input type="radio" id="5" name="app" value="5">
+    <label for="5">5</label>
+    <p />
+    <button type="submit">Отправить</button>
+  </form>
 
+<div th:each="el : ${comment}">
+  <div style="display: flex; flex-direction: row">
+    <label for="heading" style="margin-right: 10px">Заголовок:</label>
+    <p id='heading' th:text="${el.header}" style="margin: 0px; font-weight: bold"></p>
+  </div>
+  <div style="display: flex; flex-direction: row">
+    <label for="tc" style="margin-right: 10px" >Текст отзыва:</label>
+    <p id='tc' th:text="${el.tc}" style="margin: 0px"></p>
+  </div>
+
+  <div style="display: flex; flex-direction: row">
+    <label for="writer" style="margin-right: 10px">Автор:</label>
+    <p id='writer' th:text="${el.writer}" style="margin: 0px"></p>
+  </div>
+
+  <div style="display: flex; flex-direction: row">
+    <label for="dOfp" style="margin-right: 10px" >Дата написания отзыва:</label>
+    <p id='dOfp' th:text="${el.dOfp}" style="margin: 0px"></p>
+  </div>
+
+  <div style="display: flex; flex-direction: row">
+    <label for="app" style="margin-right: 10px" >Оценка отзыва:</label>
+    <p id='app' th:text="${el.app}" style="margin: 0px"></p>
+  </div>
+  <a th:href="'/blog/comment/' + ${el.id}">Подробнее</a>
+  <p>===================</p>
+</div>
+</div>
 </body>
 </html>

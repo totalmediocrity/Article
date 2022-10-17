@@ -14,7 +14,9 @@
     <h3 th:text="${el.title}"></h3>
     <p th:text="${el.anons}"></p>
     <a th:href="${'/blog/comment'}" >Комментарии</a>
+    <a th:href="'/blog/' + ${el.id}">Подробнее</a>
 </div>
+
 </div>
 </body>
 </html>
