@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="demo/Hibernate">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.43">
+    <root id="1">
+      <DefaultCasing>mixed/mixed</DefaultCasing>
+      <ServerVersion>5.6.51</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="information_schema"/>
+    <schema id="3" parent="1" name="mysql"/>
+    <schema id="4" parent="1" name="performance_schema"/>
+    <schema id="5" parent="1" name="spring_web_blog">
+      <Current>1</Current>
+    </schema>
+  </database-model>
+</dataSource>

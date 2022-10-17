@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style=" flex-direction: column-reverse; width: 200px" th:each="el : ${comment}">
+    <form method="post">
+        <input style="height: 27px" type="text" th:value="${el.header}" name="header" placeholder="Введите заголовок">
+        <p />
+        <textarea style="width: 350px; height: 150px" name="tc" th:value="${el.tc}" placeholder="Введите текст статьи"></textarea>
+        <p />
+        <input style="height: 27px" type="text" th:value="${el.writer}" name="writer" placeholder="Введите автора">
+        <p />
+        <input style="height: 24px" type="datetime-local" th:value="${el.dOfp}" name="dOfp">
+      <div th:value="${el.app}">
+        <input type="radio" id="1" name="app" value="1">
+        <label for="1">1</label>
+        <input type="radio" id="2" name="app" value="2">
+        <label for="2">2</label>
+        <input type="radio" id="3" name="app" value="3">
+        <label for="3">3</label>
+        <input type="radio" id="4" name="app" value="4">
+        <label for="4">4</label>
+        <input type="radio" id="5" name="app" value="5">
+        <label for="5">5</label>
+     </div>
+        <br>
+        <button type="submit">Сохранить изменения</button>
+    </form>
+</div>

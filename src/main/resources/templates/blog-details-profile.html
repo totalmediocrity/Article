@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h2>Детализация</h2>
+<div th:each ="el: ${profile}">
+  <h3 id="title" th:text="${el.nik}" style="margin: 0px"></h3>
+  <p th:text="${el.surname}"></p>
+  <p th:text="${el.name}"></p>
+  <p th:text="${el.patron}"></p>
+  <p th:text="${el.yourself}"></p>
+  <p th:text="${el.age}"></p>
+  <a th:href="'/blog/profile/' + ${el.id} + '/edit'">Редактировать</a>
+  <p></p>
+
+  <form th:action="'/blog/profile/' + ${el.id} + '/remove'" method="post">
+    <button type="submit" class="btn btn-del">Удалить</button>
+  </form>
+</div>
+</body>
+</html>

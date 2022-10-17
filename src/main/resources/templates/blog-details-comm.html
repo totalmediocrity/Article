@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h2>Детализация</h2>
+<div th:each ="el: ${comment}">
+  <div style="display: flex; flex-direction: row">
+    <label for="title" style="margin-right: 10px">Название статьи:</label>
+    <h3 id="title" th:text="${el.header}" style="margin: 0px"></h3>
+  </div>
+  <p th:text="${el.tc}"></p>
+  <p th:text="${el.writer}"></p>
+  <p th:text="${el.dOfp}"></p>
+  <p th:text="${el.app}"></p>
+  <a th:href="'/blog/comment/' + ${el.id} + '/edit'">Редактировать</a>
+  <p></p>
+
+  <form th:action="'/blog/comment/' + ${el.id} + '/remove'" method="post">
+    <button type="submit" class="btn btn-del">Удалить</button>
+  </form>
+</div>
+</body>
+</html>
