@@ -2,18 +2,116 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+    body {
+      font-family: 'Play';
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:#506355;
+    }
+
+    form{
+      border:2px solid #616161;
+      padding:40px 10px 0px 40px;
+      width:70%;
+      max-width: 700px;
+      border-radius:20px;
+    }
+
+    .stacked {
+      border: solid 2px ;
+      width: 65%;
+      padding: 20px 30px 20px 30px;
+      box-shadow: -2px 0 0 #506355,
+      -4px 0 0 #EAE4DA,
+      -7px 0 0 #506355,
+      0 0 7px #506355;
+    }
+
+    input{
+      padding:10px 15px;
+      border-radius:10px;
+      transition:.3s ease;
+      color:#616161;
+    }
+
+    .txtarea{
+      height: 40px;
+      width: 385px;
+      padding: 20px 30px 20px 30px;
+    }
+    .age{
+      padding: 6px 2px;
+    }
+
+    [type=submit]{
+      background:#506355;
+      color:#EAE4DA;
+      border:2px solid #506355;
+      outline:5px solid #fff;
+      width:calc(50% - 30px);
+      height:40px;
+      margin:0 30px -20px 0;
+      float:right;
+      font-weight:800;
+      font-size:0.7em;
+      letter-spacing:1.8pt;
+      text-transform:uppercase;
+      cursor:pointer;
+      border-radius:30px;
+    }
+    .form-group {
+      padding: 10px 0;
+      display:flex;
+    }
+
+  </style>
 </head>
 <body>
-<div th:each="el : ${profile}">
-  <form method="post">
-    <input type="text" th:value="${el.nik}" name="nik" placeholder="Введите ник">
-    <input name="surname" th:value="${el.surname}" placeholder="Введите фамилию">
+<body>
+<form th:each="el : ${profile}" th:action="${'/blog/profile/'+el.id+'/edit'}" method="post" class="form_class"  >
+  <h1> Редактирование профиля</h1>
+  <blockquote>
+    <input type="text" th:value="${el.nik}" name="nik"placeholder="Введите ник">
+  </blockquote>
+
+  <blockquote>
     <input type="text" th:value="${el.name}" name="name" placeholder="Введите имя">
-    <input type="text" th:value="${el.patron}" name="patron" placeholder="Введите отчество">
-    <textarea th:value="${el.yourself}" name="yourself" placeholder="Введите текст"></textarea>
-    <input type="number" th:value="${el.age}" name="age" placeholder="Возраст">
-    <br>
-    <button type="submit">Сохранить изменения</button>
-  </form>
-</div>
+  </blockquote>
+
+  <blockquote class="stacked">
+    <div class="age">Немного о себе:</div>
+    <input type="text" name="yourself" th:value="${el.yourself}"  class="txtarea">
+  </blockquote>
+
+  <blockquote>
+    <div class="form-group">Ваш пол:</div>
+    <div th:value="${el.age}" >
+    <input type="radio" id="1" name="pol" value="ж">
+    <label for="1">ж</label>
+    <input type="radio" id="2" name="pol" value="м">
+    <label for="2">м</label>
+    </div>
+  </blockquote>
+
+
+  <blockquote>
+    <div class="age">Введите информацию о возрасте:</div>
+    <input type="number" th:value="${el.age}" name="age">
+  </blockquote>
+  <blockquote>
+    <div>
+      <div class="age">Дата создания профиля:</div>
+      <input type="date"  th:value="${el.dOfs}"name="dOfs">
+    </div>
+  </blockquote>
+
+  <button type="submit" value="Сохранить изменения">Сохранить изменения</button>
+</form>
+</body>
+</body>
+</html>

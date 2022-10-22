@@ -2,60 +2,321 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Создание профиля</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+        :root {
+            --bc: #efeeee;
+            --bc-gray: #0e0d10;
+            --white: #ffffff;
+            --black: #000000;
+            --dark-blue: #1f2029;
+            --extra-dark-blue: #13141a;
+            --dark-light: #424455;
+            --red: #da2c4d;
+            --dark-red: #6e1727;
+            --yellow: #f8ab37;
+            --grey: #ecedf3;
+            --blue: #007bff;
+            --indigo: #6610f2;
+            --purple: #6f42c1;
+            --pink: #e83e8c;
+            --orange: #fd7e14;
+            --green: #28a745;
+            --light-green: #24e33a;
+            --teal: #20c997;
+            --cyan: #17a2b8;
+            --gray: #6c757d;
+            --gray-dark: #343a40;
+            --primary: #f9c6cf;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --light-gray: #ebecf2;
+            --dark: #343a40;
+            --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Play";
+            --font-family-monospace: "Play";
+        }
+
+        p{
+            margin: 0;
+            padding: 0;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        html, body {
+            margin: 0;
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: "Play";
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            background-color: var(--bc);
+        }
+        /* Classes */
+        .flex-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .flex-box-start {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .flex-box-start2 {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .flex-box-col {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .columns {
+            width: 100%;
+        }
+        .column {
+            margin: 2em;
+        }
+        .column-inner {
+            border-radius: 25px;
+            background-color: var(--bc);
+        }
+        .column-inner2 {
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            background-color: var(--bc);
+        }
+        .shadow {
+            box-shadow: 16px 4px 64px rgba(18, 61, 101, 0.3), -16px -16px 40px rgba(255, 255, 255, 0.8), inset -8px -6px 80px rgba(255, 255, 255, 0.18);
+        }
+        .sidebar {
+            width: 250px;
+            min-height: 280px;
+            position: relative;
+            text-align: center;
+        }
+        .photo {
+            top: -2px;
+            width: 180px;
+            height: 180px;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .photo > img {
+            width: 100%;
+        }
+        .header-content {
+            top: 10px;
+            position: relative;
+        }
+        .header-name {
+            margin: 0;
+            color: rgba(161, 181, 201, .8);
+            text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
+        }
+        .header-sub {
+            margin: 1em 0 2em 0;
+            color: rgba(161, 181, 201, .8);
+            text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
+        }
+        .dots {
+            left: 1em;
+            position: absolute;
+            width: 100%;
+            z-index: 5;
+        }
+        .dot1 {
+            margin: .3em;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #ebbec5;
+        }
+        .dot2 {
+            margin: .3em;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #ede29a;
+        }
+        .dot3 {
+            margin: .3em;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #aced9a;
+        }
+        .code {
+            color: var(--red);
+        }
+        .terminal-bar {
+            width: 100%;
+            min-height: 5vh;
+            position: relative;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            background-color: #e8ebeb;
+        }
+        .bar-text {
+            margin: 0;
+            font-size: 125%;
+            font-weight: 300;
+            color: rgba(161, 181, 201, .8);
+            text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
+            opacity: .75;
+        }
+        .terminal {
+        }
+        .terminal-window {
+            padding: 1em;
+            width: 500px;
+            height: 460px;
+        }
+        input{
+            padding:10px 15px;
+            border-radius:10px;
+            width: 350px;;
+            height: 35px;
+            transition:.3s ease;
+            color:#868283;
+        }
+
+        .input-txtarea{
+            height: 90px;
+            width: 390px;
+            padding: 10px;
+        }
+
+        .form-group {
+            color: #888888;
+            padding: 10px 0;
+            display:flex;
+        }
+
+        .age{
+            color: #888888;
+            padding: 6px 2px;
+        }
+
+        button{
+            margin: 0;
+            text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
+            background:#0000FF;
+            color:#EAE4DA;
+            border:2px solid #0000FF;
+            width:calc(70% - 30px);
+            height:44px;
+            margin:10px 0px 0px 0;
+            float:right;
+            font-weight:800;
+            font-size:0.7em;
+            letter-spacing:1.8pt;
+            text-transform:uppercase;
+            cursor:pointer;
+            border-radius:30px;
+        }
+        .stacked {
+            border: solid 2px;
+            padding: 10px 0px 0px 0px;
+            box-shadow: 15px 15px 0 0 blue;
+        }
+
+        .link{
+            line-height: 30px;
+            margin-left: 260px;
+        }
+    </style>
 </head>
-<body>
-<h2>Создание профиля</h2>
-<div style=" flex-direction: column-reverse; width: 200px">
+    <body>
 <form th:action="${'/blog/profile'}" method="post">
-    <p> Введите никнейм: <p/>
-    <input type="text" name="nik" placeholder="Никнейм">
-    <p> Введите Фамилию: <p/>
-    <input type="text" name="surname" placeholder="Фамилия">
-    <p> Введите Имя: <p/>
-    <input type="text" name="name" placeholder="Имя">
-    <p> Введите Отчество: <p/>
-    <input type="patron" name="patron" placeholder="Отчество">
-    <p> Введите информацию о себе: <p/>
-    <textarea name="yourself" placeholder="краткость - сестра таланта"></textarea>
-    <p> Введите информацию о возрасте: <p/>
-    <input type="number" name="age" placeholder="Возраст">
-    <br><br>
-    <button type="submit" style="border-radius: 12px; border: none; font-size: 19px;
-    margin:4px 2px; background-color: lightblue">Создать профиль</button>
+    <div class="container">
+        <div class="columns flex-box-start">
+            <div class="column flex-box">
+                <div class="column-inner sidebar shadow">
+                    <div class="sidebar flex-box-col">
+                        <div class="photo flex-box shadow">
+                            <img src="https://i.pinimg.com/564x/5c/dd/de/5cdddecb87a751c9e44cb1c565c748a7.jpg" alt="">
+                        </div>
+                        <div class="header-content">
+                            <h2 class="header-name">от <span class="code">Quzi</span></h2>
+                            <h5 class="header-sub">Добро пожаловать!</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column flex-box">
+                    <div class="column-inner2 terminal shadow">
+                        <div class="terminal-bar flex-box">
+                            <div class="dots flex-box-start2">
+                                <div class="dot1"></div>
+                                <div class="dot2"></div>
+                                <div class="dot3"></div>
+                            </div>
+                            <div class="terminal-bar flex-box bar-text">profile.exe</div>
+                        </div>
+                        <div class="terminal-window">
+                            <blockquote>
+                                <input name="nik" type="text" placeholder="Введите ник пользователя">
+                            </blockquote>
+                            <blockquote>
+                                <input type="text"  name="name" placeholder="Введите имя пользователя">
+                            </blockquote>
+                            <blockquote>
+                                <textarea  class="input-txtarea" name="yourself"  placeholder="Введите информацию о себе:"></textarea>
+                                <div class="form-group">Пол: <input type="radio" id="1" name="pol" value="ж">
+                                    <p for="1">Женский</p>
+                                    <input type="radio" id="2" name="pol" value="м">
+                                    <p for="2">Мужской</p>
+                                </div>
+                                <div class="age">Введите информацию о возрасте:</div>
+                                <input type="number" name="age" placeholder="Возраст">
+                                <div>
+                                    <div class="age">Дата создания профиля:</div>
+                                    <input type="date" name="dOfs">
+                                </div>
+                                <button type="submit" value="Создать профиль">Создать профиль</button>
+                            </blockquote>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="column flex-box">
+            <div class="column-inner2 terminal shadow">
+                <div class="terminal-bar flex-box">
+                    <div class="terminal-bar flex-box bar-text">all profile</div>
+                </div>
+                <div class="terminal-window">
+                    <blockquote class="stacked">
+                        <div th:each="el : ${profile}">
+                            <div class="age">Ник:</div>
+                            <p id='nik' th:text="${el.nik}" ></p>
+                        <a class="link" th:href="'/blog/profile/' + ${el.id}">Подробнее &rarr;</a>
+                        </div>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
-</div>
-<div th:each="el : ${profile}">
-    <div style="display: flex; flex-direction: row">
-        <label for="nik" style="margin-right: 10px">Ник:</label>
-        <p id='nik' th:text="${el.nik}" style="margin: 0px; font-weight: bold"></p>
-    </div>
-    <div style="display: flex; flex-direction: row">
-        <label for="surname" style="margin-right: 10px" >Фамилия:</label>
-        <p id='surname' th:text="${el.surname}" style="margin: 0px"></p>
-    </div>
-
-    <div style="display: flex; flex-direction: row">
-        <label for="name" style="margin-right: 10px">Имя:</label>
-        <p id='name' th:text="${el.name}" style="margin: 0px"></p>
-    </div>
-
-    <div style="display: flex; flex-direction: row">
-        <label for="patron" style="margin-right: 10px" >Отчество:</label>
-        <p id='patron' th:text="${el.patron}" style="margin: 0px"></p>
-    </div>
-
-    <div style="display: flex; flex-direction: row">
-        <label for="yourself" style="margin-right: 10px" >Текст:</label>
-        <p id='yourself' th:text="${el.yourself}" style="margin: 0px"></p>
-    </div>
-
-    <div style="display: flex; flex-direction: row">
-        <label for="age" style="margin-right: 10px" >Возраст:</label>
-        <p id='age' th:text="${el.age}" style="margin: 0px"></p>
-    </div>
-    <a th:href="'/blog/profile/' + ${el.id}">Подробнее</a>
-    <p>===================</p>
-</div>
-</body>
+    </body>
 </html>

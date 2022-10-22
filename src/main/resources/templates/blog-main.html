@@ -3,20 +3,523 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <style>
+
+        h1,h2,h3,p{
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --bc: #fcffff;
+            --bc-dark: rgba(8, 8, 10, 1);
+            --primary: rgb(232, 62, 97);
+            --white: #ffffff;
+            --black: #000000;
+            --primary-secondary: 348, 79%, 58%;
+            --quite-gray: 0, 0%, 50%;
+
+            /* Sizes */
+            --heading: 3.4rem;
+            --heading-large: 7.5rem;
+            --heading-medium: 2rem;
+            --paragraph: 1.1rem;
+            /* Fonts */
+            --font-main: "Poppins";
+            --font-title: 'Bodoni Moda', serif;
+            --text-primary: 0, 0%, 0%;
+            font-family: 'Play';
+            /* misc */
+            --transition-main: .175, .685, .32;
+        }
+        * {
+            user-select: none;
+            box-sizing: border-box;
+            /*cursor: none;*/
+        }
+        html, body {
+            margin: 0;
+            width: 100%;
+            color: var(--black);
+            background-color: var(--bc-dark);
+            font-family: var(--font-main);
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: var(--heading);
+        }
+        /* Classes */
+        /* Global classes */
+        .flexbox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .flexbox-left {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .flexbox-col {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 50px;
+        }
+
+        /* Navbar */
+        #navbar {
+            top: 2em;
+            width: 100%;
+            height: 5em;
+            position: absolute;
+            z-index: 80;
+        }
+        .navbar-inner {
+            width: calc(75% - 5em);
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        #navbar:hover {
+            width: 16em;
+        }
+
+        .navbar-items {
+            margin: 50px;
+            width: 300px;
+            padding: 10px;
+            list-style-type: none;
+        }
+
+        /* Navbar Items */
+        .navbar-item {
+            padding: 0 .8em;
+            width: 100%;
+            cursor: pointer;
+        }
+        .navbar-item-inner {
+            padding: 1em 0;
+            width: 100%;
+            position: relative;
+            border-radius: .25em;
+            color: hsl(var(--quite-gray));
+            text-decoration: none;
+
+        }
+        .navbar-item-inner:hover {
+            color: var(--white);
+            background: hsl(var(--primary-secondary));
+            box-shadow: 0 17px 30px -10px hsla(var(--quite-gray), .25);
+        }
+
+        .link-text {
+            width: 0;
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            overflow: hidden;
+            opacity: 0;
+        }
+        #navbar:hover .link-text {
+            width: calc(80% - calc(5rem - 8px));
+            opacity: 1;
+        }
+
+        /* Header */
+        #header {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-wrapper {
+            width: 50%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-title {
+            color: var(--white);
+            font-weight: 300;
+            font-family: var(--font-title);
+            letter-spacing: -.35em;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            font-size: calc(var(--heading-large) - 3.2rem);
+            z-index: 4;
+        }
+        .header-overlay {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: rgba(0, 0, 0, .45);
+            z-index: 3;
+        }
+        .header-image {
+            min-width: 80%;
+            min-height: 100%;
+            position: absolute;
+            object-fit: cover;
+            z-index: 2;
+        }
+        .header-image-blur {
+            top: 2em;
+            min-width: 95%;
+            height: 100%;
+            position: absolute;
+            transform: scale(.9, .9);
+            filter: blur(3rem);
+            opacity: .75;
+            z-index: 1;
+        }
+
+        /* Selection */
+        ::selection {
+            color: var(--white);
+            background: var(--primary);
+        }
+        /* Scrollbar */
+        ::-webkit-scrollbar-track {
+            background-color: var(--bc-dark);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            background-color: var(--bc-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+        }
+
+        @media only screen and (max-width: 1660px) {
+            :root {
+                /* Sizes */
+                --heading: 3rem;
+            }
+        }
+        @media only screen and (max-width: 1456px) {
+            :root {
+                /* Sizes */
+                --heading: 2.8rem;
+            }
+            /* Menu */
+            .menu-item {
+                margin: 1.5em 0;
+            }
+            .menu-item-inner {
+                font-size: calc(var(--heading-large) - 1.5rem);
+                line-height: 1em;
+            }
+        }
+        @media only screen and (max-width: 1220px) {
+
+        }
+        @media only screen and (max-width: 1024px) {
+            :root {
+                /* Sizes */
+                --heading: 2.4rem;
+            }
+            /* Navbar */
+            .navbar-inner {
+                width: calc(85% - 5em);
+            }
+            /* Header */
+            .header-title {
+                font-size: calc(var(--heading-large) - 3.75rem);
+            }
+            .header-wrapper {
+                width: 90%;
+            }
+        }
+        @media only screen and (max-width: 756px) {
+            :root {
+                /* Sizes */
+                --heading: 2.2rem;
+            }
+            /* Navbar */
+            .navbar-inner {
+                width: calc(100% - 5em);
+            }
+            /* Header */
+            .header-title {
+                font-size: calc(var(--heading-large) - 4rem);
+            }
+            .header-wrapper {
+                width: 100%;
+            }
+
+        }
+        @media only screen and (max-width: 496px) {
+            :root {
+                /* Sizes */
+                --heading: 1.75rem;
+            }
+        }
+        /* Cards */
+
+        .card-text {
+               margin: 0;
+               font-size: 22px;
+               line-height: 1;
+               color: #423E37;
+           }
+        .cards-container {
+
+            width: 500px;
+            height: 300px;
+            position: relative;
+            margin: 15px;
+            background-color: #efeeee;
+            border: 1.5px solid #755D9A;
+            border-radius: 20px;
+            padding: 24px 34px 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: stretch;
+
+        }
+
+        .card-flex {
+            display: flex;
+            flex-direction: row;
+            margin-right: 10px;
+
+        }
+        .title{
+            margin-right: 10px;
+        }
+        .box-text{
+            font-weight: 300;
+            font-size: 19px;
+            line-height: 19px;
+        }
+        .card-margin{
+            margin-bottom: 60px;
+        }
+        .link{
+            line-height: 30px;
+            margin-left: 310px;
+        }
+
+        #active:checked ~ .wrapper{
+            left: 0;
+        }
+        .menu-btn{
+            position: absolute;
+            z-index: 2;
+            left: 20px;
+            top: 20px;
+            height: 50px;
+            width: 50px;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .menu-btn span,
+        .menu-btn:before,
+        .menu-btn:after{
+            content: "";
+            position: absolute;
+            top: calc(50% - 1px);
+            left: 30%;
+            width: 40%;
+            border-bottom: 2px solid #000;
+            transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        /* closing animation */
+        #active:checked + .menu-btn span {
+            transform: scaleX(0);
+        }
+        #active:checked + .menu-btn:before {
+            transform: rotate(45deg);
+            border-color: #fff;
+        }
+        #active:checked + .menu-btn:after {
+            transform: rotate(-45deg);
+            border-color: #fff;
+        }
+        .wrapper ul{
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            height: 90%;
+            transform: translate(-50%, -50%);
+            list-style: none;
+            text-align: center;
+        }
+        .wrapper ul li{
+            height: 10%;
+            margin: 15px 0;
+        }
+        .wrapper ul li a{
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: 500;
+            padding: 5px 30px;
+            color: #fff;
+            border-radius: 50px;
+            position: absolute;
+            line-height: 50px;
+            margin: 5px 30px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        .wrapper ul li a:after{
+            position: absolute;
+            content: "";
+            background: #fff;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            border-radius: 50px;
+            transform: scaleY(0);
+            z-index: -1;
+            transition: transform 0.3s ease;
+        }
+        .wrapper ul li a:hover:after{
+            transform: scaleY(1);
+        }
+        .wrapper ul li a:hover{
+            color: #1a73e8;
+        }
+        input[type="checkbox"]{
+            display: none;
+        }
+        .content{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            text-align: center;
+            width: 100%;
+            color: #202020;
+        }
+        .content .title{
+            font-size: 40px;
+            font-weight: 700;
+        }
+        .content p{
+            font-size: 35px;
+            font-weight: 600;
+        }
+
+        #active:checked ~ .wrapper ul li a{
+            opacity: 1;
+        }
+        .wrapper ul li a{
+            transition: opacity 1.2s, transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+            transform: translateX(100px);
+        }
+        #active:checked ~ .wrapper ul li a{
+            transform: none;
+            transition-timing-function: ease, cubic-bezier(.1,1.3,.3,1);
+            transition-delay: .6s;
+            transform: translateX(-100px);
+        }
+
+
+
+    </style>
 </head>
 <body>
-<div style=" flex-direction: column-reverse">
-<h1>Все статьи</h1>
-<a href="/blog/filter">Поиск статей</a>
-<a href="/blog/add">Добавить статью</a>
-<a href="/blog/profile">Профиль</a>
-<div style="background-color: lightgray; width: 270px; height: 100px" th:each="el : ${posts}" >
-    <h3 th:text="${el.title}"></h3>
-    <p th:text="${el.anons}"></p>
-    <a th:href="${'/blog/comment'}" >Комментарии</a>
-    <a th:href="'/blog/' + ${el.id}">Подробнее</a>
-</div>
+<!-- #Navbar -->
+<nav id="navbar" class="flexbox">
+    <div class="navbar-inner">
+        <div class="navbar-left flexbox-left">
+            <ul class="navbar-items">
+                <li class="navbar-item flexbox-left">
+                    <a href="/blog/filter" class="navbar-item-inner flexbox-left">
+                        <span class="link-text">Поиск статей</span>
+                    </a>
+                </li>
 
-</div>
+                <li class="navbar-item flexbox-left">
+                    <a href="/blog/add" class="navbar-item-inner flexbox-left">
+                        <span class="link-text">Добавить статью</span>
+                    </a>
+                </li>
+
+                <li class="navbar-item flexbox-left">
+                    <a th:href="${'/blog/comment'}"  class="navbar-item-inner flexbox-left">
+                        <span class="link-text">Комментарии</span>
+                    </a>
+                </li>
+
+                <li class="navbar-item flexbox-left">
+                    <a href="/blog/profile" class="navbar-item-inner flexbox-left">
+                        <span class="link-text">Профиль</span>
+                    </a>
+                </li>
+            </ul>
+            </div>
+
+            </div>
+        <div class="navbar-center">
+        </div>
+
+        <div class="navbar-right flexbox-right">
+        </div>
+    </div>
+</nav>
+
+<!-- #Header -->
+<header id="header" class="flexbox">
+
+    <!-- Header Inner -->
+    <div class="header-wrapper flexbox">
+        <h1 class="header-title">Bo</h1>
+        <h1 class="header-title">lg</h1>
+        <div class="header-overlay"></div>
+        <img class="header-image" src="https://media.tenor.com/MviT9zTOs5cAAAAC/akira-kaneda.gif" alt="">
+    </div>
+
+    <!-- Header Blur -->
+    <img class="header-image-blur" src="https://media.tenor.com/MviT9zTOs5cAAAAC/akira-kaneda.gif" alt="">
+
+</header>
+
+<!-- #Main -->
+<main class="flexbox-col">
+    <div class="card-size" th:each="el : ${posts}">
+    <div class="cards-container">
+        <div class="card-flex ">
+            <label class="card-text title"for="title" >Название статьи:</label>
+            <p class="box-text" id="title" th:text="${el.title}" > text</p>
+        </div>
+            <div class="card-flex ">
+                <label class="card-text title" for="anons" >Подзаголовок:</label>
+                <p class="box-text" id="anons" th:text="${el.anons}" ></p>
+            </div>
+
+            <div class="card-flex card-margin ">
+                <label class="card-text title" for="full_text" >Текст статьи:</label>
+                <p class="box-text" id="full_text" th:text="${el.full_text}" ></p>
+            </div>
+
+            <a class="link" th:href="'/blog/' + ${el.id}">Подробнее &rarr;</a>
+        </div>
+        </div>
+    </div>
+</main>
+
+
 </body>
 </html>

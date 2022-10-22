@@ -1,30 +1,39 @@
 package com.example.demo.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import javax.xml.crypto.Data;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.Date;
+
 
 @Entity
 public class Profile {
 
-    public Profile(String nik, String surname, String name, String patron, String yourself, int age) {
+    public Profile(String nik, String name, String yourself, char pol, int age, Date dOfs) {
         this.nik = nik;
-        this.surname = surname;
         this.name = name;
-        this.patron = patron;
         this.yourself = yourself;
+        this.pol = pol;
         this.age = age;
+        this.dOfs = dOfs;
     }
 
     public Profile() {
+
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nik, surname, name, patron, yourself;
+  /*  @NotEmpty(message = "Поле не может быть пустым")
+    @Size(message = "Размер данного поля должен быть в диапозоне от 2 до 50")*/
+    private String nik, name,yourself;
+    private char pol;
     private int age;
+    private Date dOfs;
 
     public Long getId() {
         return id;
@@ -42,28 +51,12 @@ public class Profile {
         this.nik = nik;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPatron() {
-        return patron;
-    }
-
-    public void setPatron(String patron) {
-        this.patron = patron;
     }
 
     public String getYourself() {
@@ -74,11 +67,27 @@ public class Profile {
         this.yourself = yourself;
     }
 
+    public char getPol() {
+        return pol;
+    }
+
+    public void setPol(char pol) {
+        this.pol = pol;
+    }
+
     public int getAge() {
         return age;
     }
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Date getdOfs() {
+        return dOfs;
+    }
+
+    public void setdOfs(Date dOfs) {
+        this.dOfs = dOfs;
     }
 }

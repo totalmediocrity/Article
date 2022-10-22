@@ -2,25 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    h1 {
+      font-family: 'Play';
+      font-weight: 300;
+    }
+    .card {
+      padding: 0 1.7rem;
+      width: 100%;
+    }
+
+    .profcomm {
+      background: url(https://i.pinimg.com/564x/70/05/19/700519db07ef37005c05ea7e3ba5e0da.jpg) left / cover no-repeat;
+      background-color: #fff;
+      width: 500px;
+      height: 330px;
+      border-radius:20px;
+      box-shadow: 0 19px 38px rgba(0,0,0, 0.3), 0 15px 12px rgba(0,0,0, 0.2);
+    }
+
+    .header {
+      color: rgb(232, 62, 97);
+      margin: 20px 0;
+      padding-top: 1px
+    }
+
+    .fulltext{
+      color: white;
+      margin: 15px 0;
+      padding: 5px;
+    }
+
+    .link {
+      font-size: 12px;
+      color: rgb(232, 62, 97);
+      font-weight: 700;
+      line-height: 30px;
+      margin-left: 390px;
+    }
+
+    button{
+      background:#f7f7f7;
+      color:rgb(232, 62, 97);
+      border:2px solid #f7f7f7;
+      width:calc(50% - 10px);
+      height:45px;
+      margin: -10px;
+      padding: 0;
+      font-weight:700;
+      font-size:0.7em;
+      letter-spacing:1.8pt;
+      text-transform:uppercase;
+      cursor:pointer;
+      border-radius:30px;
+    }
+  </style>
 </head>
 <body>
-<h2>Детализация</h2>
-<div th:each ="el: ${comment}">
-  <div style="display: flex; flex-direction: row">
-    <label for="title" style="margin-right: 10px">Название статьи:</label>
-    <h3 id="title" th:text="${el.header}" style="margin: 0px"></h3>
-  </div>
-  <p th:text="${el.tc}"></p>
-  <p th:text="${el.writer}"></p>
-  <p th:text="${el.dOfp}"></p>
-  <p th:text="${el.app}"></p>
-  <a th:href="'/blog/comment/' + ${el.id} + '/edit'">Редактировать</a>
-  <p></p>
-
-  <form th:action="'/blog/comment/' + ${el.id} + '/remove'" method="post">
-    <button type="submit" class="btn btn-del">Удалить</button>
-  </form>
-</div>
+  <main class="profcomm card" th:each ="el: ${comment}">
+    <div class="wrapper">
+      <div class="header">
+        <h6 th:text="${el.dOfp}">12</h6>
+      </div>
+      <div class="fulltext">
+        <div class="content">
+          <h1 class="author" id="title" th:text="${el.header}" >заголовок</h1>
+          <p class="text" th:text="${el.tc}">подзаголовок</p>
+          <h1 class="title" th:text="${el.writer}">текст</h1>
+          <p class="text" th:text="${el.app}">оценка</p>
+          <a class="link" th:href="'/blog/comment/' + ${el.id} + '/edit'">Редактировать &rarr;</a>
+        </div>
+        <form  th:action="'/blog/comment/' + ${el.id} + '/remove'" method="post">
+        <button type="submit">Удалить комментарий</button>
+        </form>
+      </div>
+    </div>
+  </main>
 </body>
 </html>

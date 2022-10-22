@@ -4,10 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Date;
 
 @Entity
 public class Comment {
-       public Comment(String header, String tc, String writer, String dOfp, String app) {
+    public Comment(String header, String tc, int writer, Date dOfp, char app) {
         this.header = header;
         this.tc = tc;
         this.writer = writer;
@@ -21,7 +22,10 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String header, tc, writer,dOfp,app;
+    private String header, tc;
+    private int writer;
+    private Date dOfp;
+    private char app;
 
     public Long getId() {
         return id;
@@ -47,27 +51,27 @@ public class Comment {
         this.tc = tc;
     }
 
-    public String getWriter() {
+    public int getWriter() {
         return writer;
     }
 
-    public void setWriter(String writer) {
+    public void setWriter(int writer) {
         this.writer = writer;
     }
 
-    public String getdOfp() {
+    public Date getdOfp() {
         return dOfp;
     }
 
-    public void setdOfp(String dOfp) {
+    public void setdOfp(Date dOfp) {
         this.dOfp = dOfp;
     }
 
-    public String getApp() {
+    public char getApp() {
         return app;
     }
 
-    public void setApp(String app) {
+    public void setApp(char app) {
         this.app = app;
     }
 }

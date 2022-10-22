@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ProfileRepository extends CrudRepository<Profile, Long> {
 
+
 }

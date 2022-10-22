@@ -9,8 +9,14 @@ import com.example.demo.repo.PostRepository;
 import com.example.demo.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Part;
+import javax.validation.Valid;
+import java.io.FileInputStream;
+import java.sql.Date;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,7 +49,7 @@ public class BlogController  {
                               @RequestParam String full_text, Model model)
     {
         Post post = new Post(title, anons, full_text);
-       postRepository.save(post);
+        postRepository.save(post);
         return "redirect:/";
     }
 
@@ -83,14 +89,14 @@ public class BlogController  {
 
     @PostMapping("/blog/profile")
     public String blogPostProfile(@RequestParam String nik,
-                                  @RequestParam String surname,
                                   @RequestParam String name,
-                                  @RequestParam String patron,
                                   @RequestParam String yourself,
-                                  @RequestParam int age, Model model) {
-        Profile profile = new Profile(nik, surname, name, patron, yourself, age);
+                                  @RequestParam char pol,
+                                  @RequestParam int age,
+                                  @RequestParam Date dOfs,
+                                  Model model) {
+        Profile profile = new Profile(nik, name,yourself, pol, age,dOfs);
         profileRepository.save(profile);
-        model.addAttribute("nik", nik);
         return "blog-profile";
     }
 
@@ -105,13 +111,12 @@ public class BlogController  {
     @PostMapping("/blog/comment")
     public String blogCommProf(@RequestParam String header,
                                @RequestParam String tc,
-                               @RequestParam String writer,
-                               @RequestParam String dOfp,
-                               @RequestParam String app,
-                                  Model model) {
+                               @RequestParam int writer,
+                               @RequestParam Date dOfp,
+                               @RequestParam char app,
+                               Model model) {
         Comment comment = new Comment(header, tc, writer,dOfp,app);
         commentRepository.save(comment);
-        model.addAttribute("header", header);
         return "blog-comment";
     }
 
@@ -129,19 +134,21 @@ public class BlogController  {
     }
 
     @GetMapping("/blog/{id}/edit")
-    public String blogEdit(@PathVariable(value = "id") long id,Model model)
+    public String blogEdit(@PathVariable(value = "id") long id, Model model)
     {
         if(!postRepository.existsById(id)){
-            return "redirect:/";
+            return "redirect:/blog";
         }
         Optional<Post> post = postRepository.findById(id);
-        ArrayList<Post> res = new ArrayList<>();
+         ArrayList<Post> res = new ArrayList<>();
         post.ifPresent(res::add);
-        model.addAttribute("post",res);
+        model.addAttribute("post", res);
+
         return "blog-edit";
     }
+
     @PostMapping("/blog/{id}/edit")
-    public String blogPostUpdate(@PathVariable("id") long id,
+    public String blogPostUpdate(@PathVariable(value = "id") long id,
                                  @RequestParam String title,
                                  @RequestParam String anons,
                                  @RequestParam String full_text,
@@ -192,9 +199,9 @@ public class BlogController  {
     public String blogCommUpdate(@PathVariable("id") long id,
                                  @RequestParam String header,
                                  @RequestParam String tc,
-                                 @RequestParam String writer,
-                                 @RequestParam String dOfp,
-                                 @RequestParam String app,
+                                 @RequestParam int writer,
+                                 @RequestParam Date dOfp,
+                                 @RequestParam char app,
                                  Model model)
     {
         Comment comment = commentRepository.findById(id).orElseThrow();
@@ -206,6 +213,7 @@ public class BlogController  {
         commentRepository.save(comment);
         return "redirect:/";
     }
+
     @PostMapping ("/blog/comment/{id}/remove")
     public String blogCommDelete(@PathVariable ("id") long id, Model model)
     {
@@ -237,26 +245,40 @@ public class BlogController  {
         ArrayList<Profile> res = new ArrayList<>();
         profile.ifPresent(res::add);
         model.addAttribute("profile",res);
+        /*model.addAttribute("profile", profile.get());*/
         return "blog-edit-profile";
     }
 
-    @PostMapping("/blog/profile/{id}/edit")
+
+  /*  @PostMapping("/blog/Profile/{id}/edit")
+    public String blogPostUpdateProfile(@ModelAttribute ("profile") @Valid Profile profile,
+                                        BindingResult bindingResult)
+    {
+
+        if(bindingResult.hasErrors()){
+            return "blog-editProfile";
+        }
+        profileRepository.save(profile);
+        return "redirect:/";
+    }*/
+
+   @PostMapping("/blog/profile/{id}/edit")
     public String blogProfUpdate(@PathVariable("id") long id,
                                  @RequestParam String nik,
-                                 @RequestParam String surname,
                                  @RequestParam String name,
-                                 @RequestParam String patron,
                                  @RequestParam String yourself,
+                                 @RequestParam char pol,
                                  @RequestParam int age,
+                                 @RequestParam Date dOfs,
                                  Model model)
     {
         Profile profile = profileRepository.findById(id).orElseThrow();
         profile.setNik(nik);
-        profile.setSurname(surname);
         profile.setName(name);
-        profile.setPatron(patron);
         profile.setYourself(yourself);
+        profile.setPol(pol);
         profile.setAge(age);
+        profile.setdOfs(dOfs);
         profileRepository.save(profile);
         return "redirect:/";
     }
@@ -268,6 +290,7 @@ public class BlogController  {
 
         return "redirect:/";
     }
+
 
 
 

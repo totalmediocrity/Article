@@ -2,31 +2,118 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+        body {
+            font-family: 'Play';
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:#D09B52;
+        }
+
+        form{
+            border:2px solid #D09B52;
+            padding:40px 10px 0px 40px;
+            width:70%;
+            max-width:700px;
+            border-radius:20px;
+        }
+        .h1 {
+            margin-bottom:10px;
+            font-size:2em;
+            color:#000;
+        }
+        .wrapper {
+            margin: 0 auto;
+            width: 45%;
+            height: 480px;
+            padding-bottom: 50px;
+        }
+        .stacked {
+            border: solid 2px;
+            width: 65%;
+            padding: 20px 30px 20px 30px;
+        }
+
+        input{
+            padding:10px 15px;
+            border-radius:10px;
+            transition:.3s ease;
+            color:#868283;
+        }
+        .text{
+            width:calc(100% - 30px);
+            margin-bottom:30px;
+            border:2px solid #868283;
+        }
+
+        .txtarea{
+            height: 40px;
+            width: 385px;
+            padding: 20px 30px 20px 30px;
+        }
+        .age{
+            padding: 6px 2px;
+        }
+
+        [type=submit]{
+            background:#D09B52;
+            color:#EAE4DA;
+            border:2px solid #D09B52;
+            outline:5px solid #fff;
+            width:calc(50% - 30px);
+            height:40px;
+            margin:0 30px -20px 0;
+            float:right;
+            font-weight:800;
+            font-size:0.7em;
+            letter-spacing:1.8pt;
+            text-transform:uppercase;
+            cursor:pointer;
+            border-radius:30px;
+        }
+
+    </style>
 </head>
 <body>
-<div style=" flex-direction: column-reverse; width: 200px" th:each="el : ${comment}">
-    <form method="post">
-        <input style="height: 27px" type="text" th:value="${el.header}" name="header" placeholder="Введите заголовок">
-        <p />
-        <textarea style="width: 350px; height: 150px" name="tc" th:value="${el.tc}" placeholder="Введите текст статьи"></textarea>
-        <p />
-        <input style="height: 27px" type="text" th:value="${el.writer}" name="writer" placeholder="Введите автора">
-        <p />
-        <input style="height: 24px" type="datetime-local" th:value="${el.dOfp}" name="dOfp">
-      <div th:value="${el.app}">
-        <input type="radio" id="1" name="app" value="1">
-        <label for="1">1</label>
-        <input type="radio" id="2" name="app" value="2">
-        <label for="2">2</label>
-        <input type="radio" id="3" name="app" value="3">
-        <label for="3">3</label>
-        <input type="radio" id="4" name="app" value="4">
-        <label for="4">4</label>
-        <input type="radio" id="5" name="app" value="5">
-        <label for="5">5</label>
-     </div>
-        <br>
-        <button type="submit">Сохранить изменения</button>
-    </form>
-</div>
+    <form class="form_class" th:each="el : ${comment}" th:action="${'/blog/comment/'+el.id+'/edit'}" method="post">
+        <h1> Редактирование комментария</h1>
+        <blockquote>
+            <input type="text"  th:value="${el.header}" name="header" placeholder="Введите заголовок">
+        </blockquote>
+
+        <blockquote class="stacked">
+            <div class="age">Введите текст:</div>
+            <input type="text" th:value="${el.tc}"  name="tc" class="txtarea">
+        </blockquote>
+
+        <blockquote>
+            <div class="age">Введите информацию о возрасте:</div>
+            <input type="number" th:value="${el.writer}" name="writer">
+        </blockquote>
+        <blockquote>
+            <div>
+                <div class="age">Дата создания поста:</div>
+                <input type="date" th:value="${el.dOfp}" name="dOfp">
+            </div>
+        </blockquote>
+        <blockquote>
+            <div th:value="${el.app}" class="form-group">Как вы оцениваете информативность постов:</div>
+                <input type="radio" id="1" name="app" value="1">
+                <label for="1">1</label>
+                <input type="radio" id="2" name="app" value="2">
+                <label for="2">2</label>
+                <input type="radio" id="3" name="app" value="3">
+                <label for="3">3</label>
+                <input type="radio" id="4" name="app" value="4">
+                <label for="4">4</label>
+                <input type="radio" id="5" name="app" value="5">
+                <label for="5">5</label>
+        </blockquote>
+        <button type="submit" value="Сохранить изменения">Сохранить изменения</button>
+      </form>
+</body>
+</html>

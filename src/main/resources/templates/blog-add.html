@@ -3,18 +3,98 @@
 <head>
   <title>Добавление новой статьи</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+    body {
+      color: #0000FF;
+      font-family: 'Play';
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    form{
+      border:2px solid #0000FF;
+      padding:40px 10px 0px 40px;
+      width:70%;
+      max-width:700px;
+      border-radius:20px;
+    }
+    .h1 {
+      margin-bottom:10px;
+      font-size:2em;
+      color:#000;
+    }
+    .wrapper {
+      margin: 0 auto;
+      width: 35%;
+      height: 350px;
+      padding-bottom: 50px;
+    }
+    .stacked {
+      border: solid 2px;
+      padding: 20px 30px 20px 30px;
+      box-shadow: 13px 13px 0 0 white,
+      15px 15px 0 0 #0000FF,
+      15px 11px 0 0 #0000FF,
+      11px 15px 0 0 #0000FF;
+    }
+
+    input{
+      padding:10px 15px;
+      border-radius:10px;
+      width: 350px;;
+      height: 20px;
+      transition:.3s ease;
+      color:#868283;
+    }
+    .text{
+      width:calc(100% - 30px);
+      margin-bottom:30px;
+      border:2px solid #868283;}
+
+    button{
+      background:#0000FF;
+      color:#EAE4DA;
+      border:2px solid #0000FF;
+      outline:5px solid #fff;
+      width:calc(50% - 30px);
+      height:40px;
+      margin:0 30px -20px 0;
+      float:right;
+      font-weight:800;
+      font-size:0.7em;
+      letter-spacing:1.8pt;
+      text-transform:uppercase;
+      cursor:pointer;
+      border-radius:30px;
+    }
+
+    .input-txtarea{
+      height: 35px;
+      width: 390px;
+      padding: 10px 0;
+    }
+  </style>
 </head>
 <body>
-<div style=" padding: 18px 0 0 20px; width: 450px">
-  <h2>Добавление статьи</h2>
-<form th:action="${'/blog/add'}" method="post">
-  <input style="height: 30px" type="text" name="title" placeholder="Введите название статьи">
-  <input style="height: 30px; width: 185px" type="text" name="anons" placeholder="Введите подзаголовок статьи">
-  <p />
-  <textarea style="width: 350px; height: 150px" name="full_text" placeholder="Введите текст статьи"></textarea>
-  <p />
-  <button type="submit">Добавить статью</button>
-</form>
-</div>
+  <form class="form_class" th:action="${'/blog/add'}" method="post">
+    <h1> Добавление статьи</h1>
+    <blockquote>
+      <input  type="text"  name="title" placeholder="Введите название статьи">
+      <div th:name="title"></div>
+    </blockquote>
+    <blockquote>
+      <input type="text"  name="anons" placeholder="Введите подзаголовок статьи">
+      <div th:name="anons"></div>
+    </blockquote>
+    <blockquote class="stacked">
+      <input class="input-txtarea" type="text" name="full_text"
+             placeholder="Введите текст статьи"></input>
+    </blockquote>
+    <button type="submit">Добавить статью</button>
+  </form>
 </body>
 </html>
