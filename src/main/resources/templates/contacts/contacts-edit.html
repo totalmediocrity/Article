@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    h1 {
+      font-family: 'Play';
+      font-weight: 300;
+    }
+    .card {
+      padding: 0 1.7rem;
+      width: 100%;
+    }
+
+    .profcomm {
+      background: url(https://i.pinimg.com/564x/f9/a4/6e/f9a46e4d9cb5fc9e49c8d469a717fcd0.jpg) left / cover no-repeat;
+      background-color: #fff;
+      width: 520px;
+      height: 380px;
+      border-radius:20px;
+      box-shadow: 0 19px 38px rgba(0,0,0, 0.3), 0 15px 12px rgba(0,0,0, 0.2);
+    }
+
+    .fulltext{
+      color: white;
+      margin: 15px 0;
+      padding: 5px;
+    }
+
+    .text {
+      font-size: 12px;
+      color: #edc01c;
+      font-weight: 700;
+      line-height: 30px;
+    }
+
+    button{
+      background:#f7f7f7;
+      color:#edc01c;
+      border:2px solid #f7f7f7;
+      text-shadow: 1px 1px 1px #d6e1ef99, 0 0 0 #000, 1px 1px 1px #d6e1ef00;
+      width:calc(50% - 10px);
+      height: 35px;
+      margin: 220px;
+      font-weight:700;
+      font-size:0.7em;
+      letter-spacing:1.8pt;
+      text-transform:uppercase;
+      cursor:pointer;
+      border-radius:30px;
+    }
+  </style>
+</head>
+<body>
+<content class="profcomm card">
+  <form  action="/contacts/edit" th:object="${contacts}" method="post" class="fulltext">
+    <input type="hidden" th:field="*{id}" th:value="${contacts.id}">
+    <input type="hidden" th:field="*{user}" th:value="${contacts.user}">
+
+    <div class="content">
+      <label class="text" >Email: </label>
+      <div class="content">
+        <input type="email" th:field="*{email}" th:value="${contacts.email}">
+      </div>
+      <span class="error text-danger" th:if="${email_errors != null}" th:text="${email_errors}"></span>
+      <span class="error text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </div>
+
+    <div>
+      <label class="text">Номер телефона: </label>
+      <div class="content">
+        <input type="number" th:field="*{phoneNumber}"  th:value="${contacts.phoneNumber}" >
+      </div>
+      <span class="error text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+      <span class="error text-danger" th:if="${phoneNumber_errors != null}" th:text="${phoneNumber_errors}"></span>
+    </div>
+    <button type="submit">Сохранить</button>
+  </form>
+</content>
+</body>
+</html>

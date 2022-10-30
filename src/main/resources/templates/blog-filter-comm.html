@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+        body {
+            color: #0000FF;
+            font-family: 'Play';
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        form{
+            border:2px solid #0000FF;
+            padding:40px 10px 0px 40px;
+            width:70%;
+            max-width:700px;
+            border-radius:20px;
+        }
+        .h1 {
+            margin-bottom:10px;
+            font-size:2em;
+            color:#000;
+        }
+        .wrapper {
+            margin: 0 auto;
+            width: 35%;
+            min-height: 350px;
+            max-height: 1000px;
+            padding-bottom: 50px;
+        }
+        .stacked {
+            border: solid 2px;
+            padding: 20px 30px 20px 30px;
+            box-shadow: 5px 10px 0 0 #0000FF;
+        }
+
+        input{
+            padding:10px 15px;
+            border-radius:10px;
+            width: 350px;;
+            height: 20px;
+            transition:.3s ease;
+            color:#868283;
+        }
+        text{
+            width:calc(100% - 30px);
+            margin-bottom:30px;
+            border:2px solid #868283;}
+
+        button{
+            background:#0000FF;
+            color:#EAE4DA;
+            border:2px solid #0000FF;
+            width:calc(50% - 30px);
+            height:40px;
+            margin:10px 30px -20px 0;
+            font-weight:800;
+            font-size:0.7em;
+            letter-spacing:1.8pt;
+            text-transform:uppercase;
+            cursor:pointer;
+            border-radius:30px;
+        }
+
+        .input-txtarea{
+            height: 35px;
+            width: 390px;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<form class="wrapper" method="get" th:action="${'/blog/filter/comm'}">
+    <form>
+        <h1> Поиск комментариев пользователей</h1>
+
+        <blockquote>
+            <input type="text" name="header" placeholder="Самое время искать остроумные заголовки">
+
+            <button type="submit" style="margin: 0 0 5px 0">Неточный поиск</button>
+            <button type="submit" name="accurate_search" th:value="${accurate_search}">Точный поиск</button>
+        </blockquote>
+        <div th:each=" el:${results}">
+            <blockquote class="stacked">
+
+                <h3 th:text="${el.header}"></h3>
+                <p th:text="${el.tc}"></p>
+                <strong th:text="${el.writer}"></strong>
+                <p th:text="${el.dOfp}"></p>
+                <p th:text="${el.app}"></p>
+            </blockquote>
+        </div>
+    </form>
+</form>
+</body>
+</html>

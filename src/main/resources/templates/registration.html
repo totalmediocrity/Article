@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+        body {
+            font-family: 'Play';
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:#506355;
+        }
+
+        form{
+            border:2px solid #616161;
+            padding:40px 10px 0px 40px;
+            width:70%;
+            max-width: 700px;
+            border-radius:20px;
+        }
+
+        input{
+            padding:10px 15px;
+            border-radius:10px;
+            transition:.3s ease;
+            color:#616161;
+            width: 430px;
+        }
+
+        .age{
+            padding: 6px 2px;
+        }
+
+        [type=submit]{
+            background:#506355;
+            color:#EAE4DA;
+            border:2px solid #506355;
+            outline:5px solid #fff;
+            width:calc(50% - 30px);
+            height:40px;
+            margin:0 30px -20px 0;
+            float:right;
+            font-weight:800;
+            font-size:0.7em;
+            letter-spacing:1.8pt;
+            text-transform:uppercase;
+            cursor:pointer;
+            border-radius:30px;
+        }
+        .form-group {
+            padding: 10px 0;
+            display:flex;
+        }
+
+    </style>
+</head>
+<body>
+<div th:if="${#messages}">
+    <p th:text="${message}"></p>
+</div>
+<form th:action="@{/registration}" method="post">
+    <blockquote>
+    <h2>Привет! Давай зарегистрируемся, чтобы ты мог войти в систему</h2>
+    <div class="age" >Ник:</div>
+    <input type="text" class="form-control" name="username"/>
+    <div class="age" >Пароль:</div>
+    <input type="password" class="form-control" name="password"/>
+    <div class="age" >Имя:</div>
+    <input type="text" class="form-control" name="name"/>
+    <div class="age" >Немного о себе:</div>
+    <input type="text" class="form-control" name="yourself"/>
+
+    <div class="form-group">Пол: <input type="radio" id="1" name="pol" value="ж">
+        <p for="1">Женский</p>
+        <input type="radio" id="2" name="pol" value="м">
+        <p for="2">Мужской</p>
+    </div>
+
+    <div class="age" >Ваш возраст:</div>
+    <input type="number" class="form-control" name="age"/>
+    <div class="age" >Дата создания профиля:</div>
+    <input type="date" name="dOfs">
+    </blockquote>
+    <button type="submit" value="Зарегистрироваться">Зарегистрироваться</button>
+</form>
+</body>
+</html>

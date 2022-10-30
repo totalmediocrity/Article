@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<form th:action="${'/blog/comm/addiction'}" method="post">
+  <select  name="user">
+    <div th:each="el : ${profile}">
+      <option th:value="${profile.id}" th:text="${el.username}"></option>
+    </div>
+  </select>
+  <select  name="comment">
+    <div th:each="el : ${comment}">
+      <option th:value="${comment.id}"  th:text="${el.tc}"></option>
+    </div>
+  </select>
+  <br>
+  <button type="submit">Добавить соответствие</button>
+</form>
+</body>
+</html>

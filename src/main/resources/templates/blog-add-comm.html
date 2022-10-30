@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+    :root{
+      font-family: 'Play', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    h1 {
+      font-family: 'Play';
+      font-weight: 300;
+    }
+
+    .row {
+      max-width: 900px;
+      margin: 50px auto 0;
+    }
+
+    .card {
+      float: left;
+      padding: 0 1.7rem;
+      width: 50%;
+    }
+    .menu-content {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+    li {
+      display: inline-block;
+    }
+    a {
+      color: #fff;
+    }
+    span {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      font-size: 10px;
+      font-weight: 700;
+      font-family: 'Play';
+      transform: translate(-50%, 0);
+    }
+    .fistc {
+      width: 100px;
+      text-align: center;
+      font-size: 50px;
+      padding: 0;
+      margin: 12px;
+      line-height: 0.80;
+      position: relative;
+      font-weight: 600;
+      color: #343a40;
+    }
+
+    input{
+      padding:10px 15px;
+      border-radius:10px;
+      transition:.3s ease;
+      color: #13141a;
+    }
+    .text{
+      width:calc(100% - 30px);
+      margin-bottom:30px;
+    }
+
+    .txtarea{
+      height: 150px;
+      width: 310px;
+      padding: 20px 20px 20px 20px;
+    }
+    .age{
+      padding: 6px 2px;
+    }
+
+    [type=submit]{
+      text-shadow: 1px 1px 1px #d6e1ef99, 0 0 0 #000, 1px 1px 1px #d6e1ef00;
+      background:#13141a;
+      color:#EAE4DA;
+      border:1px solid #13141a;
+      width:300px;
+      height:40px;
+      margin:10px 5px;
+      font-weight:800;
+      font-size:0.7em;
+      letter-spacing:1.8pt;
+      text-transform:uppercase;
+      cursor:pointer;
+      border-radius:15px;
+    }
+
+    .profcomm {
+      background: url(https://i.pinimg.com/564x/68/78/4c/68784cb435e8d532576ebd9cf54cbbf1.jpg) center / cover no-repeat;
+      display: flex;
+      background-color: #fff;
+      width: 430px;
+      height: 300px;
+      margin: 10px;
+      position: relative;
+      border-radius:20px;
+      box-shadow: 0 19px 38px rgba(0,0,0, 0.3), 0 15px 12px rgba(0,0,0, 0.2);
+    }
+
+    .header {
+      color: rgb(232, 62, 97);
+      margin: 20px 0;
+    }
+
+    .fulltext{
+      color: white;
+      padding: 20px ;
+    }
+    .link {
+      font-size: 12px;
+      color: rgb(232, 62, 97);
+      font-weight: 700;
+      line-height: 30px;
+      margin-left: 220px;
+    }
+    .select{
+      clear: both;
+      width: 80%;
+      background: #eee;
+      margin-bottom: 1em;
+      color: #666;
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: .8em;
+      line-height: 2.4em;
+    }
+    .select span {
+      position: relative;
+      clear: both;
+      display: block;
+      border-bottom: solid 1px #555;
+      padding-left: .8em;
+      transition: background-color .1s ease-out;
+    }
+  </style>
+</head>
+<body>
+<div th:each="el : ${comment}">
+  <form th:action="${'/blog/add/comm'}" method="post" th:object="${comment}">
+  <div class="example-1 card">
+    <div class="wrapper">
+      <h1 class="fistc">Оставьте свой комментарий</h1>
+      <blockquote>
+        <div class="age">Введите заголовок:</div>
+        <input th:field="*{header}" type="text" th:value="*{header}" name="header">
+        <div th:if="${#fields.hasErrors('header')}" th:errors="*{header}"></div>
+      </blockquote>
+      <blockquote class="stacked">
+        <div class="age">Введите текст:</div>
+        <input th:field="*{tc}" type="text" name="tc" class="txtarea">
+        <div th:if="${#fields.hasErrors('tc')}" th:errors="*{tc}"></div>
+      </blockquote>
+      <blockquote>
+        <div class="age">Введите информацию о возрасте:</div>
+        <input type="number" th:field="*{writer}" name="writer">
+        <div th:if="${#fields.hasErrors('writer')}" th:errors="*{writer}"></div>
+      </blockquote>
+      <blockquote>
+        <div>
+          <div class="age">Дата создания поста:</div>
+          <input type="date" th:field="*{dOfp}" name="dOfp">
+          <div th:if="${#fields.hasErrors('dOfp')}" th:errors="*{dOfp}"></div>
+        </div>
+      </blockquote>
+      <blockquote>
+        <div class="age">Как вы оцениваете информативность постов:</div>
+        <input type="radio" id="1" name="app" value="1">
+        <label for="1">1</label>
+        <input type="radio" id="2" name="app" value="2">
+        <label for="2">2</label>
+        <input type="radio" id="3" name="app" value="3">
+        <label for="3">3</label>
+        <input type="radio" id="4" name="app" value="4">
+        <label for="4">4</label>
+        <input type="radio" id="5" name="app" value="5">
+        <label for="5">5</label>
+      </blockquote>
+      <button type="submit" >Добавить комментарий</button>
+    </div>
+  </div>
+</form>
+</div>
+</body>
+</html>
