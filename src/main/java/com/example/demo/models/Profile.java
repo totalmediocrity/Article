@@ -1,12 +1,13 @@
 package com.example.demo.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import javax.xml.crypto.Data;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Date;
+import java.util.Collection;
+import java.util.List;
 
 
 @Entity
@@ -28,10 +29,14 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-  /*  @NotEmpty(message = "Поле не может быть пустым")
-    @Size(message = "Размер данного поля должен быть в диапозоне от 2 до 50")*/
+    @NotEmpty(message = "Поле не может быть пустым")
+    @NotBlank(message = "Поле не должно состоять только из пробелов")
+    @Size(message = "Размер данного поля должен быть в диапозоне от 2 до 50")
     private String nik, name,yourself;
     private char pol;
+    @Min(value = 18, message = "Пользователь должен быть старше 18")
+    @NotNull(message = "Поле не может быть пустым")
+    @Positive(message = "Поле должно быть больше 0")
     private int age;
     private Date dOfs;
 

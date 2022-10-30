@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <style>
@@ -68,50 +68,47 @@
       padding: 10px 0;
       display:flex;
     }
-
   </style>
 </head>
 <body>
-<body>
-<form th:each="el : ${profile}" th:action="${'/blog/profile/'+el.id+'/edit'}" method="post" class="form_class"  >
+<div th:each="el : ${user}">
+<form th:action="${'/blog/profiles/' + user.id + '/edit'}" method="post" th:object="${user}" class="form_class">
   <h1> Редактирование профиля</h1>
   <blockquote>
-    <input type="text" th:value="${el.nik}" name="nik"placeholder="Введите ник">
-  </blockquote>
 
-  <blockquote>
-    <input type="text" th:value="${el.name}" name="name" placeholder="Введите имя">
+    <input class="age" th:field="*{name}" type="text" th:value="*{name}" name="name" placeholder="Введите имя">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
   </blockquote>
 
   <blockquote class="stacked">
-    <div class="age">Немного о себе:</div>
-    <input type="text" name="yourself" th:value="${el.yourself}"  class="txtarea">
+    <div class="age" >Немного о себе:</div>
+    <input th:field="*{yourself}" type="text" th:value="*{yourself}" name="yourself" class="txtarea">
+    <div th:if="${#fields.hasErrors('yourself')}" th:errors="*{yourself}"></div>
   </blockquote>
 
   <blockquote>
     <div class="form-group">Ваш пол:</div>
-    <div th:value="${el.age}" >
-    <input type="radio" id="1" name="pol" value="ж">
-    <label for="1">ж</label>
-    <input type="radio" id="2" name="pol" value="м">
-    <label for="2">м</label>
+    <div th:field="*{pol}" type="radio" th:value="*{pol}" name="pol">
+      <input type="radio" id="1" name="pol" value="ж">
+      <label for="1">ж</label>
+      <input type="radio" id="2" name="pol" value="м">
+      <label for="2">м</label>
     </div>
   </blockquote>
 
-
   <blockquote>
     <div class="age">Введите информацию о возрасте:</div>
-    <input type="number" th:value="${el.age}" name="age">
-  </blockquote>
-  <blockquote>
+    <input th:field="*{age}" type="number" th:value="*{age}" name="age">
+    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
     <div>
       <div class="age">Дата создания профиля:</div>
-      <input type="date"  th:value="${el.dOfs}"name="dOfs">
+      <input th:field="*{dOfs}" type="date"  th:value="*{dOfs}"name="dOfs">
+      <div th:if="${#fields.hasErrors('dOfs')}" th:errors="*{dOfs}"></div>
     </div>
   </blockquote>
 
   <button type="submit" value="Сохранить изменения">Сохранить изменения</button>
 </form>
-</body>
+</div>
 </body>
 </html>

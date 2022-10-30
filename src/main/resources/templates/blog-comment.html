@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
   <meta charset="UTF-8">
   <style>
@@ -75,15 +75,6 @@
       margin-bottom:30px;
     }
 
-    .txtarea{
-      height: 150px;
-      width: 310px;
-      padding: 20px 20px 20px 20px;
-    }
-    .age{
-      padding: 6px 2px;
-    }
-
     [type=submit]{
       text-shadow: 1px 1px 1px #d6e1ef99, 0 0 0 #000, 1px 1px 1px #d6e1ef00;
       background:#13141a;
@@ -129,65 +120,78 @@
       line-height: 30px;
       margin-left: 220px;
     }
+
+    .select span {
+      position: relative;
+      clear: both;
+      display: block;
+      border-bottom: solid 1px #555;
+      padding-left: .8em;
+      transition: background-color .1s ease-out;
+    }
+
+    .header-profile{
+      text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
+      display: flex;
+      letter-spacing: 0.3pt;
+      cursor: pointer;
+      justify-content: center;
+    }
+    .links{
+      margin-top: 10px;
+      text-decoration: lightblue;
+      padding: 15px;
+      cursor: pointer;
+      color: blue;
+      text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
+      font-weight: 800;
+      font-size: 0.9em;
+      text-transform: uppercase;
+    }
+    .links:hover{
+      opacity: .2;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-<form th:action="${'/blog/comment'}" method="post">
-<div class="row">
-  <div class="example-1 card">
-    <div class="wrapper">
-      <h1 class="fistc">Оставьте свой комментарий</h1>
-      <blockquote>
-        <div class="age">Введите заголовок:</div>
-        <input type="text" name="header">
-      </blockquote>
-      <blockquote class="stacked">
-        <div class="age">Введите текст:</div>
-        <input type="text" name="tc" class="txtarea">
-      </blockquote>
-      <blockquote>
-        <div class="age">Введите информацию о возрасте:</div>
-        <input type="number"  name="writer">
-      </blockquote>
-      <blockquote>
-        <div>
-          <div class="age">Дата создания поста:</div>
-          <input type="date"  name="dOfp">
-        </div>
-      </blockquote>
-      <blockquote>
-        <div class="age">Как вы оцениваете информативность постов:</div>
-        <input type="radio" id="1" name="app" value="1">
-        <label for="1">1</label>
-        <input type="radio" id="2" name="app" value="2">
-        <label for="2">2</label>
-        <input type="radio" id="3" name="app" value="3">
-        <label for="3">3</label>
-        <input type="radio" id="4" name="app" value="4">
-        <label for="4">4</label>
-        <input type="radio" id="5" name="app" value="5">
-        <label for="5">5</label>
-      </blockquote>
-      <button type="submit" value="Сохранить изменения">Сохранить изменения</button>
-    </div>
-  </div>
 
-  <main class="profcomm card" th:each="el : ${comment}">
-    <div class="wrapper">
-      <div class="header">
-          <h6 id='dOfp' th:text="${el.dOfp}" >12</h6>
-      </div>
-      <div class="fulltext">
-        <div class="content">
-          <h1 class="author" id='header' th:text="${el.header}">заголовок</h1>
-          <h1 class="title" id='tc' th:text="${el.tc}" >текст</h1>
-          <p class="text" id="writer" th:text="${el.writer}">автор</p>
-          <a class="link" th:href="'/blog/comment/' + ${el.id}">Подробнее &rarr;</a>
-        </div>
+<header class="header">
+  <div class="header-profile">
+    <a class="links" href="/">Главная</a>
+    <a class="links" href="/blog/profile" sec:authorize="hasAuthority('USER')">Профили</a>
+    <a class="links" href="/blog/add/comm" sec:authorize="hasAuthority('USER')">Добавить комментарий</a>
+    <a class="links" href="/blog/comm/addiction">Добавление зависимости</a>
+    <a class="links" href="/blog/filter/comm">Поиск комментариев</a>
+  </div>
+</header>
+
+<form th:action="${'/blog/comment'}">
+  <div class="row">
+    <div class="example-1 card">
+      <div class="wrapper">
+          <h1 class="fistc">Ваши комментарии:</h1>
+        <blockquote>
+        </blockquote>
       </div>
     </div>
-  </main>
-</div>
+
+    <main class="profcomm card" th:each="el : ${comment}">
+      <div class="wrapper">
+        <div class="header">
+          <h6 id='dOfp' th:text="${el.dOfp}" >12</h6>
+        </div>
+        <div class="fulltext">
+          <div class="content">
+            <h1 class="author" id='header' th:text="${el.header}">заголовок</h1>
+            <h1 class="title" id='tc' th:text="${el.tc}" >текст</h1>
+            <p class="text" id="writer" th:text="${el.writer}">автор</p>
+            <a class="link" th:href="'/blog/comment/' + ${el.id}">Подробнее &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
 </form>
 </body>
 </html>

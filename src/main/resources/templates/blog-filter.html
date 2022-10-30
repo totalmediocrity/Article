@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <style>
@@ -82,8 +82,8 @@
             <blockquote>
                 <input type="text"  name="title" placeholder="Что поищем сегодня">
 
-                <button formaction="/blog/filter/result" formmethod="post" type="submit" style="margin: 0 0 5px 0">Неточный поиск</button>
-                <button formaction="/blog/filter/results" formmethod="post" type="submit">Точный поиск</button>
+                <button type="submit" style="margin: 0 0 5px 0">Неточный поиск</button>
+                <button type="submit" name="accurate_search" th:value="${accurate_search}">Точный поиск</button>
             </blockquote>
         <div th:each=" el:${results}">
             <blockquote class="stacked">

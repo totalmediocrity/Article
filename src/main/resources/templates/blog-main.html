@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"> <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -63,6 +63,7 @@
             justify-content: flex-start;
             align-items: center;
         }
+
         .flexbox-col {
             display: flex;
             flex-direction: row;
@@ -89,7 +90,6 @@
             align-items: center;
             justify-content: center;
         }
-
 
         #navbar:hover {
             width: 16em;
@@ -130,6 +130,7 @@
             font-weight: 700;
             overflow: hidden;
             opacity: 0;
+
         }
         #navbar:hover .link-text {
             width: calc(80% - calc(5rem - 8px));
@@ -434,6 +435,20 @@
             transition-delay: .6s;
             transform: translateX(-100px);
         }
+        button{
+            background:#0000FF;
+            color:#EAE4DA;
+            border:2px solid #0000FF;
+            width:calc(50% - 30px);
+            height:40px;
+            margin:10px 30px -20px 0;
+            font-weight:800;
+            font-size:0.7em;
+            letter-spacing:1.8pt;
+            text-transform:uppercase;
+            cursor:pointer;
+            border-radius:30px;
+        }
 
 
 
@@ -443,6 +458,14 @@
 <!-- #Navbar -->
 <nav id="navbar" class="flexbox">
     <div class="navbar-inner">
+        <a class="link-text" sec:authorize="hasAuthority('ADMIN')" href="/admin">Список пользователей</a>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" sec:authorize="!isAuthenticated()">Login</button>
+        </form>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" sec:authorize="isAuthenticated()">Выйти</button>
+        </form>
+
         <div class="navbar-left flexbox-left">
             <ul class="navbar-items">
                 <li class="navbar-item flexbox-left">
@@ -477,12 +500,12 @@
 
         <div class="navbar-right flexbox-right">
         </div>
+
     </div>
 </nav>
 
 <!-- #Header -->
 <header id="header" class="flexbox">
-
     <!-- Header Inner -->
     <div class="header-wrapper flexbox">
         <h1 class="header-title">Bo</h1>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <style>
@@ -201,54 +201,66 @@
             color:#868283;
         }
 
-        .input-txtarea{
-            height: 90px;
-            width: 390px;
-            padding: 10px;
-        }
-
-        .form-group {
-            color: #888888;
-            padding: 10px 0;
-            display:flex;
-        }
-
         .age{
             color: #888888;
             padding: 6px 2px;
         }
 
-        button{
-            margin: 0;
+        .button{
             text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
-            background:#0000FF;
-            color:#EAE4DA;
-            border:2px solid #0000FF;
-            width:calc(70% - 30px);
-            height:44px;
-            margin:10px 0px 0px 0;
-            float:right;
-            font-weight:800;
-            font-size:0.7em;
-            letter-spacing:1.8pt;
-            text-transform:uppercase;
-            cursor:pointer;
-            border-radius:30px;
-        }
-        .stacked {
-            border: solid 2px;
-            padding: 10px 0px 0px 0px;
-            box-shadow: 15px 15px 0 0 blue;
+            font-weight: 800;
+            display: flex;
+            font-size: 0.9em;
+            letter-spacing: 0.3pt;
+            text-transform: uppercase;
+            cursor: pointer;
+            flex-direction: row-reverse;
         }
 
         .link{
-            line-height: 30px;
-            margin-left: 260px;
+            color: #0000FF;
+            margin: 10px;
         }
-    </style>
+
+        .header{
+            max-width: 1220px;
+            max-height: 10px;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-evenly;
+            align-content: stretch;
+        }
+        .header-profile{
+            flex-direction: row;
+            text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
+            display: flex;
+            padding: 50px 0;
+            letter-spacing: 0.3pt;
+            cursor: pointer;
+        }
+        .links{
+            margin-top: 10px;
+            text-decoration: lightblue;
+            padding: 15px;
+            cursor: pointer;
+            }
+            .links:hover{
+                opacity: .2;
+                text-decoration: underline;
+            }
+</style>
 </head>
     <body>
-<form th:action="${'/blog/profile'}" method="post">
+
+    <header class="header">
+        <div class="header-profile">
+            <a class="links" href="/blog/filter/profile">Поиск профилей</a>
+            <a class="links" href="/">Главная</a>
+            <a class="links" href="/blog/comment">Комментарии</a>
+        </div>
+    </header>
+
+<form th:action="${'/blog/profile'}" method="post" th:object="${user}">
     <div class="container">
         <div class="columns flex-box-start">
             <div class="column flex-box">
@@ -276,44 +288,36 @@
                         </div>
                         <div class="terminal-window">
                             <blockquote>
-                                <input name="nik" type="text" placeholder="Введите ник пользователя">
-                            </blockquote>
-                            <blockquote>
-                                <input type="text"  name="name" placeholder="Введите имя пользователя">
-                            </blockquote>
-                            <blockquote>
-                                <textarea  class="input-txtarea" name="yourself"  placeholder="Введите информацию о себе:"></textarea>
-                                <div class="form-group">Пол: <input type="radio" id="1" name="pol" value="ж">
-                                    <p for="1">Женский</p>
-                                    <input type="radio" id="2" name="pol" value="м">
-                                    <p for="2">Мужской</p>
+
+                                <div class="age" for="name">Имя пользователя:</div>
+                                <div class="age" id='name' th:text="${user.name}"></div>
+
+                                <div class="age" for="yourself">Информацию о себе:</div>
+                                <div class="age" id='yourself' th:text="${user.yourself}"></div>
+
+                                <div class="age" for="pol">Пол:</div>
+                                <div class="age" id='pol' th:text="${user.pol}"></div>
+
+                                <div class="age">Информация о возрасте:</div>
+                                <div class="age" id='age' th:text="${user.age}"></div>
+
+                                <div class="age">Дата создания профиля:</div>
+                                <div class="age" id='dOfs' th:text="${user.dOfs}"></div>
+
+
+                                <div class="age">Email:</div>
+                                <div class="age" id='email' th:text="${user.contacts != null} ? ${user.contacts.email} : ''"></div>
+
+                                <div class="age">Телефон:</div>
+                                <div class="age" id='phone' th:text="${user.contacts != null} ? ${user.contacts.phoneNumber} : ''" ></div>
+
+                                <div class="button">
+                                    <a class="link" th:href="'/blog/profiles/' + ${user.id} + '/edit'">Редактировать &rarr;</a>
+                                    <a class="link" th:if="${user.contacts == null}" th:href="'/contacts/add/' + ${user.id}">Добавить контакты &rarr;</a>
                                 </div>
-                                <div class="age">Введите информацию о возрасте:</div>
-                                <input type="number" name="age" placeholder="Возраст">
-                                <div>
-                                    <div class="age">Дата создания профиля:</div>
-                                    <input type="date" name="dOfs">
-                                </div>
-                                <button type="submit" value="Создать профиль">Создать профиль</button>
                             </blockquote>
                         </div>
                     </div>
-            </div>
-        </div>
-        <div class="column flex-box">
-            <div class="column-inner2 terminal shadow">
-                <div class="terminal-bar flex-box">
-                    <div class="terminal-bar flex-box bar-text">all profile</div>
-                </div>
-                <div class="terminal-window">
-                    <blockquote class="stacked">
-                        <div th:each="el : ${profile}">
-                            <div class="age">Ник:</div>
-                            <p id='nik' th:text="${el.nik}" ></p>
-                        <a class="link" th:href="'/blog/profile/' + ${el.id}">Подробнее &rarr;</a>
-                        </div>
-                    </blockquote>
-                </div>
             </div>
         </div>
     </div>

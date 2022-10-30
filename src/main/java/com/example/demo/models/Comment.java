@@ -1,10 +1,8 @@
 package com.example.demo.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class Comment {
@@ -26,6 +24,20 @@ public class Comment {
     private int writer;
     private Date dOfp;
     private char app;
+
+    @ManyToMany
+    @JoinTable(name="user_comment",
+            joinColumns=@JoinColumn(name="comment_id"),
+            inverseJoinColumns=@JoinColumn(name="user_id"))
+    private List<User> users;
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 
     public Long getId() {
         return id;

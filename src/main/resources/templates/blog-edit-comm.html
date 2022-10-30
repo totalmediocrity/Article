@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <style>
@@ -52,7 +52,7 @@
 
         .txtarea{
             height: 40px;
-            width: 385px;
+        /*    width: 385px;*/
             padding: 20px 30px 20px 30px;
         }
         .age{
@@ -75,34 +75,38 @@
             cursor:pointer;
             border-radius:30px;
         }
+        .hidden{
+            display: none;
+        }
 
     </style>
 </head>
 <body>
-    <form class="form_class" th:each="el : ${comment}" th:action="${'/blog/comment/'+el.id+'/edit'}" method="post">
+<div th:object="${comment}">
+    <form th:each="el : ${comment}" class="form_class" th:action="${'/blog/comment/'+comment.id+'/edit'}" method="post">
         <h1> Редактирование комментария</h1>
         <blockquote>
-            <input type="text"  th:value="${el.header}" name="header" placeholder="Введите заголовок">
+            <input type="text" th:field="*{header}" th:value="*{header}" name="header" placeholder="Введите заголовок">
+            <div th:if="${#fields.hasErrors('header')}" th:errors="*{header}"></div>
         </blockquote>
 
         <blockquote class="stacked">
             <div class="age">Введите текст:</div>
-            <input type="text" th:value="${el.tc}"  name="tc" class="txtarea">
+            <input type="text" th:field="*{tc}" th:value="*{tc}" name="tc" class="txtarea">
+            <div th:if="${#fields.hasErrors('tc')}" th:errors="*{tc}"></div>
         </blockquote>
 
         <blockquote>
-            <div class="age">Введите информацию о возрасте:</div>
-            <input type="number" th:value="${el.writer}" name="writer">
-        </blockquote>
-        <blockquote>
+           <!-- <div class="age">Введите информацию о возрасте:</div>
+            <input type="number" th:field="*{writer}" th:value="*{writer}" name="writer">
+            <div th:if="${#fields.hasErrors('writer')}" th:errors="*{writer}"></div>
             <div>
                 <div class="age">Дата создания поста:</div>
-                <input type="date" th:value="${el.dOfp}" name="dOfp">
-            </div>
-        </blockquote>
-        <blockquote>
+                <input type="date" th:field="*{dOfp}" th:value="*{dOfp}" name="dOfp">
+                <div th:if="${#fields.hasErrors('dOfp')}" th:errors="*{dOfp}"></div>
+            </div>-->
             <div th:value="${el.app}" class="form-group">Как вы оцениваете информативность постов:</div>
-                <input type="radio" id="1" name="app" value="1">
+                <input type="radio" id="1" name="app" value="1" checked="true">
                 <label for="1">1</label>
                 <input type="radio" id="2" name="app" value="2">
                 <label for="2">2</label>
@@ -113,7 +117,10 @@
                 <input type="radio" id="5" name="app" value="5">
                 <label for="5">5</label>
         </blockquote>
-        <button type="submit" value="Сохранить изменения">Сохранить изменения</button>
+        <button type="submit" >Сохранить изменения</button>
+        <input class="hidden" type="text" th:field="*{writer}" th:value="*{writer}" name="author">
+        <input class="hidden" type="text" th:field="*{dOfp}" th:value="*{dOfp}" name="actionDate">
       </form>
+</div>
 </body>
 </html>
