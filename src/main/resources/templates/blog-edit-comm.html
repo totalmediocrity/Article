@@ -21,21 +21,16 @@
             max-width:700px;
             border-radius:20px;
         }
-        .h1 {
-            margin-bottom:10px;
-            font-size:2em;
-            color:#000;
+        .txtarea{
+            height: 50px;
+            width: 255px;
+            padding: 20px 20px 20px 20px;
         }
-        .wrapper {
-            margin: 0 auto;
-            width: 45%;
-            height: 480px;
-            padding-bottom: 50px;
-        }
-        .stacked {
-            border: solid 2px;
-            width: 65%;
-            padding: 20px 30px 20px 30px;
+
+        .block{
+            height: 80px;
+            width: 255px;
+            padding: 20px 20px 20px 20px;
         }
 
         input{
@@ -44,17 +39,7 @@
             transition:.3s ease;
             color:#868283;
         }
-        .text{
-            width:calc(100% - 30px);
-            margin-bottom:30px;
-            border:2px solid #868283;
-        }
 
-        .txtarea{
-            height: 40px;
-        /*    width: 385px;*/
-            padding: 20px 30px 20px 30px;
-        }
         .age{
             padding: 6px 2px;
         }
@@ -86,25 +71,14 @@
     <form th:each="el : ${comment}" class="form_class" th:action="${'/blog/comment/'+comment.id+'/edit'}" method="post">
         <h1> Редактирование комментария</h1>
         <blockquote>
-            <input type="text" th:field="*{header}" th:value="*{header}" name="header" placeholder="Введите заголовок">
+            <textarea type="text" th:field="*{header}" class="txtarea" th:value="*{header}" name="header" maxlength="200" placeholder="Введите заголовок"></textarea>
             <div th:if="${#fields.hasErrors('header')}" th:errors="*{header}"></div>
-        </blockquote>
-
-        <blockquote class="stacked">
             <div class="age">Введите текст:</div>
-            <input type="text" th:field="*{tc}" th:value="*{tc}" name="tc" class="txtarea">
+            <textarea type="text" th:field="*{tc}" class="block" th:value="*{tc}" name="tc" maxlength="200"></textarea>
             <div th:if="${#fields.hasErrors('tc')}" th:errors="*{tc}"></div>
         </blockquote>
 
         <blockquote>
-           <!-- <div class="age">Введите информацию о возрасте:</div>
-            <input type="number" th:field="*{writer}" th:value="*{writer}" name="writer">
-            <div th:if="${#fields.hasErrors('writer')}" th:errors="*{writer}"></div>
-            <div>
-                <div class="age">Дата создания поста:</div>
-                <input type="date" th:field="*{dOfp}" th:value="*{dOfp}" name="dOfp">
-                <div th:if="${#fields.hasErrors('dOfp')}" th:errors="*{dOfp}"></div>
-            </div>-->
             <div th:value="${el.app}" class="form-group">Как вы оцениваете информативность постов:</div>
                 <input type="radio" id="1" name="app" value="1" checked="true">
                 <label for="1">1</label>
@@ -118,7 +92,7 @@
                 <label for="5">5</label>
         </blockquote>
         <button type="submit" >Сохранить изменения</button>
-        <input class="hidden" type="text" th:field="*{writer}" th:value="*{writer}" name="author">
+<!--        <input class="hidden" type="text" th:field="*{writer}" th:value="*{writer}" name="author">-->
         <input class="hidden" type="text" th:field="*{dOfp}" th:value="*{dOfp}" name="actionDate">
       </form>
 </div>

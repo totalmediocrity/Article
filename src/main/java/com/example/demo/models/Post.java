@@ -1,16 +1,16 @@
 package com.example.demo.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Entity
 public class Post {
-    public Post(String title, String anons, String full_text) {
+    public Post(String title,String anons, String full_text, User user) {
         this.title = title;
         this.anons = anons;
         this.full_text = full_text;
+        this.user = user;
     }
 
     public Post() {
@@ -22,8 +22,17 @@ public class Post {
 
 //    @NotEmpty(message = "Поле не может быть пустым")
 //    @Size(message = "Размер данного поля должен быть в диапозоне от 2 до 50")
+    @Size(max = 200, message = "Поле должно иметь меньше 200 символов")
+    @NotBlank(message = "Поле не должно быть пустым")
+//    @Pattern(regexp = "[a-zA-Zа-яА-Я]{1,200}", message = "Только кирилица, от 1-200 символов")
     private String title, anons, full_text;
-    private int views;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER)
+    public User user;
+
+//    public Post(String title, String anons, User user, String full_text) {
+//    }
 
 
     public Long getId() {
@@ -58,12 +67,14 @@ public class Post {
         this.full_text = full_text;
     }
 
-    public int getViews() {
-        return views;
+
+    public User getUser() {
+        return user;
     }
 
-    public void setViews(int views) {
-        this.views = views;
+    public void setUser(User user) {
+        this.user = user;
     }
+
 
 }

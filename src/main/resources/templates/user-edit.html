@@ -3,23 +3,102 @@
 <head>
     <title>Редактирование пользователя</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        .page{
+            margin: 0 auto;
+            padding-top: 28px;
+        }
+        h1,h2,h3{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        p{
+            margin: 0;
+            padding: 0;
+        }
+        .header{
+            width: 1221px;
+            height: 80px;
+            margin: 0 auto 26px;
+            align-items: center;
+        }
+        .header__title{
+            padding-left: 17px;
+            border-left: 1px black solid;
+            font-weight: 400;
+            font-size: 32px;
+            line-height: 38px;
+            height: 60px;
+            padding-top: 21px;
+        }
+        .form_class{
+            height: 550px;
+            width: 439px;
+            margin: 50px auto 0;
+
+        }
+        .input-flex{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .input-class{
+            width: 371px;
+            height: 49px;
+            background: #EAE4DA;
+            border: 1px solid #D6D6D6;;
+            border-radius: 20px;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            text-align: center;
+            color: black;
+            padding: 0;
+            margin-bottom: 24px;
+        }
+        button{
+            background:#0000FF;
+            color:#EAE4DA;
+            border:2px solid #0000FF;
+            width:calc(50% - 30px);
+            height:40px;
+            margin:10px 30px -20px 0;
+            font-weight:800;
+            font-size:0.7em;
+            letter-spacing:1.8pt;
+            text-transform:uppercase;
+            cursor:pointer;
+            border-radius:30px;
+        }
+    </style>
 </head>
 <body>
-<form th:action="@{/admin}" method="post">
-    <div th:each="el : ${user}">
-        <input type="hidden" th:value="${el.id}" name="userId">
-        <input type="text" name="username" th:value="${el.username}">
-    </div>
-    <div th:each="role : ${roles}">
+<div class="form_class" >
+    <form class="input-flex" th:action="${'/admin'}" method="post">
         <div th:each="el : ${user}">
-            <input th:id="${role}" type="checkbox" th:name="${'roles[]'}" th:value="${role}"
-                   th:checked="${#lists.contains(el.roles, role)}"/>
-            <label th:text="${role}" /></label>
+            <input type="hidden" th:value="${el.id}" name="userId">
+            <input class="input-class" th:value="${el.username}" name="username" placeholder="Придумайте новый никнейм" required>
+
+            <div th:each="role : ${roles}">
+                <div th:each="el : ${user}">
+                    <input th:id="${role}" type="radio" th:name="${'roles[]'}" th:value="${role}" required/>
+                    <label th:text="${role}"></label>
+                </div>
+            </div>
+
+
+            <button  type="submit">Сохранить изменения</button>
         </div>
-    </div>
-    <br>
-    <button type="submit">Сохранить изменения</button>
-</form>
+
+    </form>
+</div>
+
+
 </body>
 </html>
 

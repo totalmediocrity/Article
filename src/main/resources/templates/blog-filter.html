@@ -72,20 +72,45 @@
             width: 390px;
             padding: 10px 0;
         }
+        .link{
+            color: #0000FF;
+            margin: 10px;
+        }
+
+        .header-profile{
+            flex-direction: row;
+            text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
+            letter-spacing: 0.3pt;
+            cursor: pointer;
+        }
+        .links{
+            margin-top: 10px;
+            text-decoration: lightblue;
+            padding: 15px;
+            cursor: pointer;
+        }
+        .links:hover{
+            opacity: .2;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 <form class="wrapper">
-    <form >
+    <header class="header">
+        <div class="header-profile">
+            <a class="links" href="/">Главная</a>
+        </div>
+    </header>
+    <form method="post" th:action="'/blog/filter'">
         <h1> Поиск статей</h1>
-
             <blockquote>
                 <input type="text"  name="title" placeholder="Что поищем сегодня">
-
                 <button type="submit" style="margin: 0 0 5px 0">Неточный поиск</button>
                 <button type="submit" name="accurate_search" th:value="${accurate_search}">Точный поиск</button>
             </blockquote>
         <div th:each=" el:${results}">
+            <div> <i th:if="${results.size() == 0}">Ничего не найдено</i></div>
             <blockquote class="stacked">
                 <h3 th:text="${el.title}"></h3>
                 <p th:text="${el.anons}"></p>

@@ -7,8 +7,8 @@
 <body>
 <form th:action="${'/blog/comm/addiction'}" method="post">
   <select  name="user">
-    <div th:each="el : ${profile}">
-      <option th:value="${profile.id}" th:text="${el.username}"></option>
+    <div th:each="el : ${user}">
+      <option th:value="${user.id}" th:text="${el.name}"></option>
     </div>
   </select>
   <select  name="comment">

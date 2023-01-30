@@ -21,7 +21,7 @@
     }
 
     .profcomm {
-      background: url(https://i.pinimg.com/564x/b8/b5/56/b8b556e09bab11f42862e88216846732.jpg) left / cover no-repeat;
+      background: url(https://i.pinimg.com/564x/0f/25/71/0f257195b2623564e87cc12fd021e23c.jpg) left / cover no-repeat;
       background-color: #fff;
       width: 520px;
       height: 380px;
@@ -36,15 +36,15 @@
     }
 
     .text {
-      font-size: 12px;
-      color: rgb(232, 62, 97);
+      font-size: 16px;
+      color: #67603F;
       font-weight: 700;
       line-height: 30px;
     }
 
     button{
       background:#f7f7f7;
-      color:rgb(232, 62, 97);
+      color:#67603F;
       border:2px solid #f7f7f7;
       text-shadow: 1px 1px 1px #d6e1ef99, 0 0 0 #000, 1px 1px 1px #d6e1ef00;
       width:calc(50% - 10px);
@@ -77,7 +77,12 @@
     <div class="content">
       <label class="text">Номер телефона: </label>
       <div lass="content">
-        <input type="number" th:field="*{phoneNumber}"  th:value="${contacts.phoneNumber}" >
+        <input type="tel" maxlength="50"
+               autofocus="autofocus" required="required"
+               value="+7(___)___-__-__"
+               pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
+               placeholder="+7(___)___-__-__" class="form-control" name="phoneNumber"/>
+<!--        <input type="number" th:field="*{phoneNumber}"  th:value="${contacts.phoneNumber}" >-->
       </div>
       <span class="error text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
       <span class="error text-danger" th:if="${phoneNumber_errors != null}" th:text="${phoneNumber_errors}"></span>
@@ -87,4 +92,39 @@
   </form>
 </content>
 </body>
+<script type="text/javascript">
+  function setCursorPosition(pos, e) {
+    e.focus();
+    if (e.setSelectionRange) e.setSelectionRange(pos, pos);
+    else if (e.createTextRange) {
+      var range = e.createTextRange();
+      range.collapse(true);
+      range.moveEnd("character", pos);
+      range.moveStart("character", pos);
+      range.select()
+    }
+  }
+
+  function mask(e) {
+    //console.log('mask',e);
+    var matrix = this.placeholder,// .defaultValue
+            i = 0,
+            def = matrix.replace(/\D/g, ""),
+            val = this.value.replace(/\D/g, "");
+    def.length >= val.length && (val = def);
+    matrix = matrix.replace(/[_\d]/g, function(a) {
+      return val.charAt(i++) || "_"
+    });
+    this.value = matrix;
+    i = matrix.lastIndexOf(val.substr(-1));
+    i < matrix.length && matrix != this.placeholder ? i++ : i = matrix.indexOf("_");
+    setCursorPosition(i, this)
+  }
+  window.addEventListener("DOMContentLoaded", function() {
+    var input = document.querySelector("#online_phone");
+    input.addEventListener("input", mask, false);
+    input.focus();
+    setCursorPosition(3, input);
+  });
+</script>
 </html>

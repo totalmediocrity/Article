@@ -56,15 +56,15 @@
     </style>
 </head>
 <body>
-    <div th:if="${param.error}" class="header">
+<form th:action="@{/login}" method="post"  class="form_class">
+    <blockquote>
+
+        <div th:if="${param.error}" class="header">
             <p>Неправильный ник или пароль. Что конкретно обдумывайте сами</p>
         </div>
         <div th:if="${param.logout}">
             <p> Вы вышли из учетной записи.Ждем Ваше скорейшее появление</p>
-    </div>
-<form th:action="@{/login}" method="post"  class="form_class">
-    <blockquote>
-
+        </div>
     <div class="age" >Ник:</div>
     <input type="text" class="form-control" name="username"/>
     <div class="age" >Пароль:</div>

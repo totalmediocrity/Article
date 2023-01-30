@@ -189,8 +189,8 @@
         }
         .terminal-window {
             padding: 1em;
-            width: 500px;
-            height: 460px;
+            /*width: 500px;*/
+            /*height: 460px;*/
         }
         input{
             padding:10px 15px;
@@ -211,15 +211,15 @@
             font-weight: 800;
             display: flex;
             font-size: 0.9em;
-            letter-spacing: 0.3pt;
-            text-transform: uppercase;
+            /* letter-spacing: 0.3pt; */
+            /* text-transform: uppercase; */
             cursor: pointer;
             flex-direction: row-reverse;
         }
 
         .link{
             color: #0000FF;
-            margin: 10px;
+            /*margin: 10px;*/
         }
 
         .header{
@@ -254,9 +254,10 @@
 
     <header class="header">
         <div class="header-profile">
-            <a class="links" href="/blog/filter/profile">Поиск профилей</a>
             <a class="links" href="/">Главная</a>
+            <a class="links" href="/blog/filter/profile">Поиск профилей</a>
             <a class="links" href="/blog/comment">Комментарии</a>
+            <a class="links" th:if="${user.contacts == null}" th:href="'/contacts/add/' + ${user.id}">Добавить подробную информацию</a>
         </div>
     </header>
 
@@ -289,31 +290,24 @@
                         <div class="terminal-window">
                             <blockquote>
 
-                                <div class="age" for="name">Имя пользователя:</div>
-                                <div class="age" id='name' th:text="${user.name}"></div>
+                                <div class="age" for="name">Имя пользователя: <span class="age" id='name' th:text="${user.name}"></span></div>
 
-                                <div class="age" for="yourself">Информацию о себе:</div>
-                                <div class="age" id='yourself' th:text="${user.yourself}"></div>
+                                <div class="age" for="surname">Фамилия: <span class="age" id='surname' th:text="${user.surname}"></span></div>
 
-                                <div class="age" for="pol">Пол:</div>
-                                <div class="age" id='pol' th:text="${user.pol}"></div>
+                                <div class="age" for="patron">Отчество: <span class="age" id='patron' th:text="${user.patron}"></span></div>
 
-                                <div class="age">Информация о возрасте:</div>
-                                <div class="age" id='age' th:text="${user.age}"></div>
+                                <div class="age" for="yourself">Информацию о себе: <span class="age" id='yourself' th:text="${user.yourself}"></span></div>
 
-                                <div class="age">Дата создания профиля:</div>
-                                <div class="age" id='dOfs' th:text="${user.dOfs}"></div>
+                                <div class="age" for="pol">Пол: <span class="age" id='pol' th:text="${user.pol}"></span></div>
 
+                                <div class="age">Информация о возрасте: <span class="age" id='age' th:text="${user.age}"></span></div>
 
-                                <div class="age">Email:</div>
-                                <div class="age" id='email' th:text="${user.contacts != null} ? ${user.contacts.email} : ''"></div>
+                                <div class="age">Email: <span class="age" id='email' th:text="${user.contacts != null} ? ${user.contacts.email} : ''"></span></div>
 
-                                <div class="age">Телефон:</div>
-                                <div class="age" id='phone' th:text="${user.contacts != null} ? ${user.contacts.phoneNumber} : ''" ></div>
+                                <div class="age">Телефон: <span class="age" id='phone' th:text="${user.contacts != null} ? ${user.contacts.phoneNumber} : ''" ></span></div>
 
                                 <div class="button">
-                                    <a class="link" th:href="'/blog/profiles/' + ${user.id} + '/edit'">Редактировать &rarr;</a>
-                                    <a class="link" th:if="${user.contacts == null}" th:href="'/contacts/add/' + ${user.id}">Добавить контакты &rarr;</a>
+                                    <a class="link" th:href="'/blog/profile/' + ${user.id} + '/edit'">Редактировать &rarr;</a>
                                 </div>
                             </blockquote>
                         </div>

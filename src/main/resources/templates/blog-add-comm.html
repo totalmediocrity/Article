@@ -80,6 +80,13 @@
       width: 310px;
       padding: 20px 20px 20px 20px;
     }
+
+    .block{
+      height: 80px;
+      width: 310px;
+      padding: 20px 20px 20px 20px;
+    }
+
     .age{
       padding: 6px 2px;
     }
@@ -158,29 +165,24 @@
       <h1 class="fistc">Оставьте свой комментарий</h1>
       <blockquote>
         <div class="age">Введите заголовок:</div>
-        <input th:field="*{header}" type="text" th:value="*{header}" name="header">
+        <textarea th:field="*{header}" type="text" class="block"  th:value="*{header}" name="header" maxlength="200" required>></textarea>
         <div th:if="${#fields.hasErrors('header')}" th:errors="*{header}"></div>
       </blockquote>
       <blockquote class="stacked">
         <div class="age">Введите текст:</div>
-        <input th:field="*{tc}" type="text" name="tc" class="txtarea">
+        <textarea th:field="*{tc}" type="text" name="tc" class="txtarea" maxlength="200" required></textarea>
         <div th:if="${#fields.hasErrors('tc')}" th:errors="*{tc}"></div>
-      </blockquote>
-      <blockquote>
-        <div class="age">Введите информацию о возрасте:</div>
-        <input type="number" th:field="*{writer}" name="writer">
-        <div th:if="${#fields.hasErrors('writer')}" th:errors="*{writer}"></div>
       </blockquote>
       <blockquote>
         <div>
           <div class="age">Дата создания поста:</div>
-          <input type="date" th:field="*{dOfp}" name="dOfp">
+          <input type="date" max="2023-02-28" min="2023-01-12" th:field="*{dOfp}" name="dOfp">
           <div th:if="${#fields.hasErrors('dOfp')}" th:errors="*{dOfp}"></div>
         </div>
       </blockquote>
       <blockquote>
         <div class="age">Как вы оцениваете информативность постов:</div>
-        <input type="radio" id="1" name="app" value="1">
+        <input type="radio" id="1" name="app" value="1" required>
         <label for="1">1</label>
         <input type="radio" id="2" name="app" value="2">
         <label for="2">2</label>

@@ -27,9 +27,12 @@
             border-radius:10px;
             transition:.3s ease;
             color:#616161;
-            width: 430px;
+            /*width: 430px;*/
         }
 
+        .text{
+            width: 430px;
+        }
         .age{
             padding: 6px 2px;
         }
@@ -61,28 +64,47 @@
 <div th:if="${#messages}">
     <p th:text="${message}"></p>
 </div>
-<form th:action="@{/registration}" method="post">
+<form method="post" th:action="@{/registration}" th:object="${user}">
     <blockquote>
-    <h2>Привет! Давай зарегистрируемся, чтобы ты мог войти в систему</h2>
-    <div class="age" >Ник:</div>
-    <input type="text" class="form-control" name="username"/>
-    <div class="age" >Пароль:</div>
-    <input type="password" class="form-control" name="password"/>
-    <div class="age" >Имя:</div>
-    <input type="text" class="form-control" name="name"/>
-    <div class="age" >Немного о себе:</div>
-    <input type="text" class="form-control" name="yourself"/>
+        <h2>Привет! Давай зарегистрируемся, чтобы ты мог войти в систему</h2>
+        <div class="age" >Ник:</div>
+        <input required type="text" class="form-control" th:field="*{username}"/>
+        <span class="div-valid" th:if="${messageUsername != null}" th:text="${messageUsername}"></span>
+        <span class="div-valid" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
 
-    <div class="form-group">Пол: <input type="radio" id="1" name="pol" value="ж">
+    <div class="age" >Пароль:</div>
+    <input required type="password" class="form-control text"  th:field="*{password}"/>
+        <span class="div-valid" th:if="${message != null}" th:text="${message}"></span>
+        <span class="div-valid" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+
+    <div class="age" >Имя:</div>
+    <input required type="text"  class="form-control text"  th:field="*{name}"/>
+        <span class="div-valid" th:if="${message != null}" th:text="${message}"></span>
+        <span class="div-valid" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+        <div class="age" >Фамилия:</div>
+        <input required type="text"  class="form-control text" th:field="*{surname}"/>
+        <span class="div-valid" th:if="${message != null}" th:text="${message}"></span>
+        <span class="div-valid" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+
+        <div class="age" >Отчество:</div>
+        <input required type="text"  class="form-control text" th:field="*{patron}"/>
+        <span class="div-valid" th:if="${message != null}" th:text="${message}"></span>
+        <span class="div-valid" th:if="${#fields.hasErrors('patron')}" th:errors="*{patron}"></span>
+
+    <div class="age" >Немного о себе:</div>
+    <input required type="text"  class="form-control text" th:field="*{yourself}"/>
+        <span class="div-valid" th:if="${message != null}" th:text="${message}"></span>
+        <span class="div-valid" th:if="${#fields.hasErrors('yourself')}" th:errors="*{yourself}"></span>
+
+    <div class="form-group">Пол: <input type="radio" id="1" name="pol" value="ж" required>
         <p for="1">Женский</p>
         <input type="radio" id="2" name="pol" value="м">
         <p for="2">Мужской</p>
     </div>
 
     <div class="age" >Ваш возраст:</div>
-    <input type="number" class="form-control" name="age"/>
-    <div class="age" >Дата создания профиля:</div>
-    <input type="date" name="dOfs">
+    <input type="date" max="2004-12-31" min="1955-12-31" class="form-control text" name="age" required/>
     </blockquote>
     <button type="submit" value="Зарегистрироваться">Зарегистрироваться</button>
 </form>

@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Collections;
 
 @Controller
@@ -21,13 +24,26 @@ public class RegistrationController {
     private PasswordEncoder passwordEncoder;
 
     @GetMapping("/registration")
-    public String registration(){
-        return "registration";
-    }
+    public String registration(
+        Model model,@ModelAttribute("user") User user ){
+            return "registration";
+        }
 
     @PostMapping("/registration")
-    public String addUser(User user, Model model){
+    public String addUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model){
         User userFromDb = userRepository.findByUsername(user.getUsername());
+
+        Boolean haveErrors = false;
+
+        if(userRepository.findByUsername(user.getUsername()) != null && !userRepository.findByUsername(user.getUsername()).getId().equals(user.getId())){
+            model.addAttribute("messageUsername", "Ник уже занят. Добавьте креатива при создании");
+            haveErrors = true;
+        }
+
+
+        if(bindingResult.hasErrors() || haveErrors){
+            return "registration";
+        }
 
         if(userFromDb != null)
         {
@@ -37,7 +53,7 @@ public class RegistrationController {
         }
 
         user.setActive(true);
-        user.setRoles(Collections.singleton(Role.USER));
+        user.setRoles(Collections.singleton(Role.ADMIN));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
 

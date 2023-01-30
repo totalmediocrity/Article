@@ -78,9 +78,12 @@ public class ShowUserProfile implements UserDetails {
 
     public char getPol(){ return  user.getPol();}
 
-    public int getAge() {
-        return user.getAge();
+    public User getUser() {
+        return user;
     }
 
-    public Date getdOfs(){ return  user.getdOfs();}
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }

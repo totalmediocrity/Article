@@ -77,7 +77,6 @@
         <div class="content">
           <h1 class="author" id="title" th:text="${el.header}" >заголовок</h1>
           <p class="text" th:text="${el.tc}">подзаголовок</p>
-          <h1 class="title" th:text="${el.writer}">текст</h1>
           <p class="text" th:text="${el.app}">оценка</p>
           <a class="link" th:href="'/blog/comment/' + ${el.id} + '/edit'" sec:authorize="hasAuthority('USER')">Редактировать &rarr;</a>
         </div>

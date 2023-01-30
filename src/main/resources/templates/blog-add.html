@@ -18,9 +18,9 @@
     form{
       border:2px solid #0000FF;
       padding:40px 10px 0px 40px;
-      width:70%;
       max-width:700px;
       border-radius:20px;
+      width: 77%;
     }
     .h1 {
       margin-bottom:10px;
@@ -45,7 +45,8 @@
     input{
       padding:10px 15px;
       border-radius:10px;
-      width: 350px;;
+      width: 350px;
+      margin: 10px;
       height: 20px;
       transition:.3s ease;
       color:#868283;
@@ -76,17 +77,19 @@
       height: 35px;
       width: 390px;
       padding: 10px 0;
+      margin: 10px;
+      color:#868283;
     }
     .select{
       clear: both;
-      width: 80%;
-      background: #eee;
-      margin-bottom: 1em;
+      width: 75%;
+      /* background: #eee; */
+      margin: 10px;
       color: #666;
       cursor: pointer;
       display: inline-block;
       vertical-align: middle;
-      padding-left: .8em;
+      padding-left: 0.8em;
       line-height: 2.4em;
     }
     .select span {
@@ -96,41 +99,67 @@
       border-bottom: solid 1px #555;
       padding-left: .8em;
       transition: background-color .1s ease-out;
+    }.header-profile{
+       text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
+       display: flex;
+       letter-spacing: 0.3pt;
+       cursor: pointer;
+       justify-content: center;
+     }
+    .links{
+      /*margin-top: 10px;*/
+      margin: 20px 0;
+      text-decoration: lightblue;
+      padding: 15px;
+      cursor: pointer;
+      color: blue;
+      text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
+      font-weight: 800;
+      font-size: 0.9em;
+      text-transform: uppercase;
     }
+    .links:hover{
+      opacity: .2;
+      text-decoration: underline;
+    }
+    .header {
+      /*color: rgb(232, 62, 97);*/
+      margin: 20px 0;
+    }
+
   </style>
+
+
 </head>
 <body>
-<form class="form_class" th:action="${'/blog/add'}" method="post">
-  <h1> Добавление статьи</h1>
-  <!--<blockquote class="select">
-    <label>Выберите ник пользователя</label>
-    <select  name="profile">
-      <div th:each="element : ${profile}">
-        <option th:text="${element.name}"></option>
+<div class="page">
+  <div class="class-header">
+    <header class="header">
+      <div class="header-border">
+        <h1 class="header__title">ДОБАВЛЕНИЕ СТАТЬИ</h1>
+        <a class="links" href="/">Главная</a>
       </div>
-    </select>
-    </blockquote>
-    <blockquote class="select">
-      <label>Выберите Ваш предыдущий пост</label>
-    <select  name="post">
-      <div th:each="element : ${posts}">
-        <option th:text="${element.title}"></option>
-      </div>
-    </select>
-  </blockquote>-->
-  <blockquote>
-    <input  type="text"  name="title" placeholder="Введите название статьи">
-    <div th:name="title"></div>
-  </blockquote>
-  <blockquote>
-    <input type="text"  name="anons" placeholder="Введите подзаголовок статьи">
-    <div th:name="anons"></div>
-  </blockquote>
-  <blockquote class="stacked">
-    <input class="input-txtarea" type="text" name="full_text"
-           placeholder="Введите текст статьи"></input>
-  </blockquote>
-  <button type="submit">Добавить статью</button>
-</form>
+    </header>
+  </div>
+
+  <form class="form_class card" th:action="${'/blog/add'}" method="post" th:object="${post}">
+    <div class="input-flex input">
+      <div class="div-valid" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+      <input th:field="*{title}" class="input-field" type="text"  name="title" placeholder="Название статьи">
+      <div class="div-valid" th:if="${#fields.hasErrors('anons')}" th:errors="*{anons}"></div>
+      <input th:field="*{anons}" class="input-field" type="text"  name="anons" placeholder="Анонс статьи">
+      <div class="div-valid" th:if="${#fields.hasErrors('full_text')}" th:errors="*{full_text}"></div>
+      <textarea th:field="*{full_text}" class="input-txtarea text" name="full_text"  placeholder="Текст статьи"></textarea>
+
+      <select th:field="*{user}" class="form-control select">
+        <div th:each="el : ${profile}" >
+          <option th:value="${el.id}" th:text="${el.username}"/>
+        </div>
+      </select>
+
+      <button class="action-button" type="submit">Создать</button>
+    </div>
+  </form>
+</div>
 </body>
 </html>

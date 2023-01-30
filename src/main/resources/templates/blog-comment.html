@@ -32,11 +32,7 @@
          padding: 0 1.7rem;
          width: 50%;
        }
-    .menu-content {
-      margin: 0;
-      padding: 0;
-      list-style-type: none;
-    }
+
     li {
       display: inline-block;
     }
@@ -44,35 +40,21 @@
       color: #fff;
     }
     span {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      font-size: 10px;
-      font-weight: 700;
-      font-family: 'Play';
+      /*position: absolute;*/
+      /*left: 50%;*/
+      /*top: 0;*/
+      font-size: 16px;
+      /*font-weight: 700;*/
+      /*font-family: 'Play';*/
       transform: translate(-50%, 0);
+      color: #343a40;
     }
-    .fistc {
-         width: 100px;
-         text-align: center;
-         font-size: 50px;
-         padding: 0;
-         margin: 12px;
-         line-height: 0.80;
-         position: relative;
-         font-weight: 600;
-         color: #343a40;
-       }
 
     input{
       padding:10px 15px;
       border-radius:10px;
       transition:.3s ease;
       color: #13141a;
-    }
-    .text{
-      width:calc(100% - 30px);
-      margin-bottom:30px;
     }
 
     [type=submit]{
@@ -142,11 +124,12 @@
       text-decoration: lightblue;
       padding: 15px;
       cursor: pointer;
-      color: blue;
+      /*color: blue;*/
       text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
       font-weight: 800;
       font-size: 0.9em;
       text-transform: uppercase;
+        color: #343a40;
     }
     .links:hover{
       opacity: .2;
@@ -159,8 +142,8 @@
 <header class="header">
   <div class="header-profile">
     <a class="links" href="/">Главная</a>
-    <a class="links" href="/blog/profile" sec:authorize="hasAuthority('USER')">Профили</a>
-    <a class="links" href="/blog/add/comm" sec:authorize="hasAuthority('USER')">Добавить комментарий</a>
+<!--    <a class="links" href="/blog/profile" sec:authorize="hasAuthority('USER')">Профиль</a>-->
+    <a class="links" href="/blog/add/comm" sec:authorize="hasAuthority('USER')">Новый комментарий</a>
     <a class="links" href="/blog/comm/addiction">Добавление зависимости</a>
     <a class="links" href="/blog/filter/comm">Поиск комментариев</a>
   </div>
@@ -168,13 +151,13 @@
 
 <form th:action="${'/blog/comment'}">
   <div class="row">
-    <div class="example-1 card">
-      <div class="wrapper">
-          <h1 class="fistc">Ваши комментарии:</h1>
-        <blockquote>
-        </blockquote>
-      </div>
-    </div>
+<!--    <div class="example-1 card">-->
+<!--      <div class="wrapper">-->
+<!--          <h1 class="fistc">Комментарии:</h1>-->
+<!--        <blockquote>-->
+<!--        </blockquote>-->
+<!--      </div>-->
+<!--    </div>-->
 
     <main class="profcomm card" th:each="el : ${comment}">
       <div class="wrapper">
@@ -183,9 +166,8 @@
         </div>
         <div class="fulltext">
           <div class="content">
-            <h1 class="author" id='header' th:text="${el.header}">заголовок</h1>
-            <h1 class="title" id='tc' th:text="${el.tc}" >текст</h1>
-            <p class="text" id="writer" th:text="${el.writer}">автор</p>
+            <h2 class="author" id='header' th:text="${el.header}"></h2>
+            <h2 class="title" id='tc' th:text="${el.tc}"></h2>
             <a class="link" th:href="'/blog/comment/' + ${el.id}">Подробнее &rarr;</a>
           </div>
         </div>

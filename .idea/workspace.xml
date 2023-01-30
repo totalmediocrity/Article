@@ -6,24 +6,36 @@
   <component name="ChangeListManager">
     <list default="true" id="0cd3fca1-e523-4d40-8232-b058dd2b4f6c" name="Changes" comment="комментарий для продвижения">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controllers/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controllers/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controllers/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controllers/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/models/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/models/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/models/Contacts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/models/Contacts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/models/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/models/Post.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/models/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/models/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repo/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repo/CommentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repo/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repo/PostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repo/ProfileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repo/ProfileRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repo/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repo/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ShowUserProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ShowUserProfile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-add.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-add-comm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-add-comm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-comm-addiction.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-comm-addiction.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-comment.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-comment.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-details-comm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-details-comm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-details-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-details-profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-details.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-edit-comm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-edit-comm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-edit-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-edit-profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-filter-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-filter-profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-filter.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-filter.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/blog-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/blog-profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/userEdit.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/contacts/contacts-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/contacts/contacts-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user-edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user-list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,33 +100,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_directory_selection": "D:/demo/src/test/java",
-    "last_opened_file_path": "D:/Article-master",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "spring.configuration.checksum": "fe01ce2a7fbac8fafaed7c982a04e229"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_directory_selection&quot;: &quot;D:/demo/src/test/java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/demo/src/main/resources&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;fe01ce2a7fbac8fafaed7c982a04e229&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\demo\src\main\resources" />
+      <recent name="D:\demo\src\main\resources\templates" />
       <recent name="D:\demo\src\main\java\com\example\demo\service" />
       <recent name="D:\demo\src\main\java\com\example\demo\models" />
       <recent name="D:\demo\src\main\java\com\example\demo\controllers" />
-      <recent name="D:\demo\src\main\resources\templates" />
-      <recent name="D:\demo\src\main\java\com\example\demo\repo" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\demo\src\main\resources\static" />
@@ -128,11 +142,11 @@
       <recent name="com.example.demo" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.demo.repo" />
+      <recent name="com.example.demo.controllers" />
       <recent name="com.example.demo.models" />
       <recent name="com.example.demo.service" />
-      <recent name="com.example.demo.controllers" />
       <recent name="OneToManyAndManyToOne" />
-      <recent name="com.example.demo.repo" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.DemoApplication">
@@ -226,7 +240,26 @@
       <workItem from="1666550199737" duration="27558000" />
       <workItem from="1666685888494" duration="2955000" />
       <workItem from="1666975591314" duration="55412000" />
-      <workItem from="1667129046130" duration="8797000" />
+      <workItem from="1667129046130" duration="16280000" />
+      <workItem from="1667159710261" duration="11042000" />
+      <workItem from="1667577229228" duration="8000" />
+      <workItem from="1668171712358" duration="656000" />
+      <workItem from="1669505126086" duration="12779000" />
+      <workItem from="1669718159113" duration="592000" />
+      <workItem from="1670064187087" duration="2000" />
+      <workItem from="1670326810890" duration="918000" />
+      <workItem from="1670400129446" duration="132000" />
+      <workItem from="1670442984357" duration="969000" />
+      <workItem from="1670447820634" duration="3035000" />
+      <workItem from="1670573715951" duration="6472000" />
+      <workItem from="1670664999752" duration="2717000" />
+      <workItem from="1670776817165" duration="594000" />
+      <workItem from="1673481678393" duration="5327000" />
+      <workItem from="1673487476284" duration="4956000" />
+      <workItem from="1673502449419" duration="37828000" />
+      <workItem from="1674022168057" duration="809000" />
+      <workItem from="1674047621852" duration="125000" />
+      <workItem from="1675081594367" duration="3245000" />
     </task>
     <task id="LOCAL-00001" summary="комментарий для продвижения">
       <created>1666020511610</created>
@@ -242,7 +275,21 @@
       <option name="project" value="LOCAL" />
       <updated>1666453682568</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="комментарий для продвижения">
+      <created>1667140095860</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1667140095860</updated>
+    </task>
+    <task id="LOCAL-00004" summary="комментарий для продвижения">
+      <created>1667140155620</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1667140155620</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -88,11 +88,12 @@
       <div th:each=" el:${result}">
         <blockquote class="stacked">
 <!--          <h3 th:text="${el.nik}"></h3>-->
-          <h3 th:text="${el.name}"></h3>
-          <strong th:text="${el.yourself}"></strong>
-          <p th:text="${el.pol}"></p>
-          <p th:text="${el.age}"></p>
-          <p th:text="${el.dOfs}"></p>
+          <h3 id="name" th:text="${el.name}"></h3>
+            <h3 id="surname" th:text="${el.surname}"></h3>
+            <h3 id="patron" th:text="${el.patron}"></h3>
+          <strong id="yourself" th:text="${el.yourself}"></strong>
+          <p id="pol" th:text="${el.pol}"></p>
+          <p id="age" th:text="${el.age}"></p>
         </blockquote>
       </div>
     </form>

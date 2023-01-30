@@ -11,47 +11,43 @@
       display:flex;
       justify-content:center;
       align-items:center;
-      color:#506355;
+      color:#D09B52;
     }
 
     form{
-      border:2px solid #616161;
+      border:2px solid #D09B52;
       padding:40px 10px 0px 40px;
-      width:70%;
-      max-width: 700px;
+      /*width:70%;*/
+      max-width:700px;
       border-radius:20px;
     }
+    .txtarea{
+      height: 50px;
+      width: 500px;
+      padding: 20px 20px 20px 20px;
+    }
 
-    .stacked {
-      border: solid 2px ;
-      width: 65%;
-      padding: 20px 30px 20px 30px;
-      box-shadow: -2px 0 0 #506355,
-      -4px 0 0 #EAE4DA,
-      -7px 0 0 #506355,
-      0 0 7px #506355;
+    .block{
+      height: 80px;
+      width: 280px;
+      padding: 20px 20px 20px 20px;
     }
 
     input{
       padding:10px 15px;
       border-radius:10px;
       transition:.3s ease;
-      color:#616161;
+      color:#868283;
     }
 
-    .txtarea{
-      height: 40px;
-      width: 385px;
-      padding: 20px 30px 20px 30px;
-    }
     .age{
       padding: 6px 2px;
     }
 
     [type=submit]{
-      background:#506355;
+      background:#D09B52;
       color:#EAE4DA;
-      border:2px solid #506355;
+      border:2px solid #D09B52;
       outline:5px solid #fff;
       width:calc(50% - 30px);
       height:40px;
@@ -64,50 +60,42 @@
       cursor:pointer;
       border-radius:30px;
     }
-    .form-group {
-      padding: 10px 0;
-      display:flex;
+    .hidden{
+      display: none;
     }
+
   </style>
 </head>
 <body>
 <div th:each="el : ${user}">
-<form th:action="${'/blog/profiles/' + user.id + '/edit'}" method="post" th:object="${user}" class="form_class">
+<form th:action="${'/blog/profile/' + user.id + '/edit'}" method="post" th:object="${user}" class="form_class">
   <h1> Редактирование профиля</h1>
   <blockquote>
 
     <input class="age" th:field="*{name}" type="text" th:value="*{name}" name="name" placeholder="Введите имя">
     <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+    <input class="age" th:field="*{surname}" type="text" th:value="*{surname}" name="surname" placeholder="Введите фамилию">
+    <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
+
+    <input class="age" th:field="*{patron}" type="text" th:value="*{patron}" name="patron" placeholder="Введите отчество">
+    <div th:if="${#fields.hasErrors('patron')}" th:errors="*{patron}"></div>
   </blockquote>
 
   <blockquote class="stacked">
     <div class="age" >Немного о себе:</div>
-    <input th:field="*{yourself}" type="text" th:value="*{yourself}" name="yourself" class="txtarea">
+    <textarea th:field="*{yourself}" type="text" th:value="*{yourself}" name="yourself" class="txtarea" maxlength="200"></textarea>
     <div th:if="${#fields.hasErrors('yourself')}" th:errors="*{yourself}"></div>
   </blockquote>
 
-  <blockquote>
-    <div class="form-group">Ваш пол:</div>
-    <div th:field="*{pol}" type="radio" th:value="*{pol}" name="pol">
-      <input type="radio" id="1" name="pol" value="ж">
-      <label for="1">ж</label>
-      <input type="radio" id="2" name="pol" value="м">
-      <label for="2">м</label>
-    </div>
-  </blockquote>
-
-  <blockquote>
-    <div class="age">Введите информацию о возрасте:</div>
-    <input th:field="*{age}" type="number" th:value="*{age}" name="age">
-    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
-    <div>
-      <div class="age">Дата создания профиля:</div>
-      <input th:field="*{dOfs}" type="date"  th:value="*{dOfs}"name="dOfs">
-      <div th:if="${#fields.hasErrors('dOfs')}" th:errors="*{dOfs}"></div>
-    </div>
-  </blockquote>
-
   <button type="submit" value="Сохранить изменения">Сохранить изменения</button>
+
+  <input class="hidden" type="text"  style="display:none" th:field="*{username}" th:value="*{username}" name="username">
+  <input class="hidden" type="text"  style="display:none" th:field="*{password}" th:value="*{password}" name="password">
+
+  <input class="hidden" type="text"  style="display:none" th:field="*{pol}" th:value="*{pol}" name="pol">
+  <input class="hidden" type="text"  style="display:none" th:field="*{age}" th:value="*{age}" name="age">
+
 </form>
 </div>
 </body>

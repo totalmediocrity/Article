@@ -13,13 +13,14 @@ import java.util.List;
 @Entity
 public class Profile {
 
-    public Profile(String nik, String name, String yourself, char pol, int age, Date dOfs) {
+    public Profile(String nik, String name, String surname,String patron, String yourself, char pol, Date age) {
         this.nik = nik;
         this.name = name;
+        this.surname = surname;
+        this.patron = patron;
         this.yourself = yourself;
         this.pol = pol;
         this.age = age;
-        this.dOfs = dOfs;
     }
 
     public Profile() {
@@ -32,13 +33,10 @@ public class Profile {
     @NotEmpty(message = "Поле не может быть пустым")
     @NotBlank(message = "Поле не должно состоять только из пробелов")
     @Size(message = "Размер данного поля должен быть в диапозоне от 2 до 50")
-    private String nik, name,yourself;
+    private String nik, name,surname,patron,yourself;
     private char pol;
-    @Min(value = 18, message = "Пользователь должен быть старше 18")
-    @NotNull(message = "Поле не может быть пустым")
-    @Positive(message = "Поле должно быть больше 0")
-    private int age;
-    private Date dOfs;
+    @Past(message = "Дата рождения не должна быть в будущем")
+    private Date age;
 
     public Long getId() {
         return id;
@@ -80,19 +78,27 @@ public class Profile {
         this.pol = pol;
     }
 
-    public int getAge() {
+    public Date getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Date age) {
         this.age = age;
     }
 
-    public Date getdOfs() {
-        return dOfs;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setdOfs(Date dOfs) {
-        this.dOfs = dOfs;
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getPatron() {
+        return patron;
+    }
+
+    public void setPatron(String patron) {
+        this.patron = patron;
     }
 }

@@ -26,17 +26,13 @@ public class User implements UserDetails {
     @NotEmpty(message = "Поле не может быть пустым")
     @NotBlank(message = "Поле не должно состоять только из пробелов")
     @Size(min = 2, max = 40, message = "Размер данного поля должен быть в диапазоне от 2 до 40")
-    private String name, yourself;
+    private String name, surname, patron, yourself;
 
     private char pol;
 
-    @Min(value = 18, message = "Пользователь должен быть старше 18")
-    @NotNull(message = "Поле не может быть пустым")
-    @Positive(message = "Поле должно быть больше 0")
-    private int age;
+    @Past(message = "Дата рождения не должна быть в будущем")
+    private Date age;
 
-    @PastOrPresent(message = "Дата должна быть либо в настоящем, либо в прошлом")
-    private Date dOfs;
 
     //-----------------------------------------------------------------------------------
 
@@ -156,20 +152,12 @@ public class User implements UserDetails {
         this.pol = pol;
     }
 
-    public int getAge() {
+    public Date getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Date age) {
         this.age = age;
-    }
-
-    public Date getdOfs() {
-        return dOfs;
-    }
-
-    public void setdOfs(Date dOfs) {
-        this.dOfs = dOfs;
     }
 
     public Contacts getContacts() {
@@ -178,6 +166,22 @@ public class User implements UserDetails {
 
     public void setContacts(Contacts contacts) {
         this.contacts = contacts;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getPatron() {
+        return patron;
+    }
+
+    public void setPatron(String patron) {
+        this.patron = patron;
     }
 }
 

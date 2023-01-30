@@ -3,6 +3,7 @@ package com.example.demo.models;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -13,13 +14,11 @@ public class Contacts {
     private Long id;
 
     @Column(unique = true)
-    @Email(message = "Строка должна являться Email")
-    @NotNull(message = "Поле не должно быть пустым")
-    @NotBlank(message = "Поле не должно быть пустым")
+    @Email(regexp = "[a-zA-Z0-9]{3,20}@[a-zA-Z0-9]{3,15}[.][a-zA-Z]{2,5}", message= "Некорретный ввод электронной почты")
+    @NotEmpty(message = "Поле не может быть пустым")
+    @NotBlank(message = "Поле не должно состоять из одних пробелов")
     private String email;
     @Column(unique = true)
-    @NotNull(message = "Поле не должно быть пустым")
-    @NotBlank(message = "Поле не должно быть пустым")
     private String phoneNumber;
 
     @OneToOne(optional = true, mappedBy = "contacts")
